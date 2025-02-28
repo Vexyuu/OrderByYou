@@ -1,0 +1,167 @@
+PRIX téléphones :
+
+Apple :
+    iPhone 15 Pro Max NOIR : 1 329,00 €
+    iPhone 15 Pro NOIR : 950,00 €
+    iPhone 15 NOIR : 824,00 €
+    iPhone 14 Pro Max NOIR : 687,00 €
+    iPhone 14 Pro NOIR : 603,00 €
+    iPhone 14 NOIR : 453,00 €
+    iPhone 13 Pro Max NOIR : 528,00 €
+    iPhone 13 Pro NOIR : 438,00 €
+    iPhone 13 NOIR : 379,00 €
+    iPhone SE NOIR (2022) : 603,00 €
+
+Samsung :
+    Galaxy S23 Ultra NOIR : 899,99 €
+    Galaxy S23+ NOIR : 799,99 €
+    Galaxy S23 NOIR : 605,99 €
+    Galaxy S22 Ultra NOIR : 869,00 €
+    Galaxy S22+ NOIR : 679,99 €
+    Galaxy S22 NOIR : 525,00 €
+    Galaxy Z Fold5 NOIR : 1222,99 €
+    Galaxy Z Flip5 NOIR : 849,99 €
+    Galaxy A54 NOIR : 309,99 €
+    Galaxy A34 NOIR : 209,00 €
+    Galaxy A14 NOIR : 118,00 €
+    Galaxy Note20 Ultra : 849,00 €
+    Galaxy S21 FE : 414,99 €
+
+
+/assets/img/productsImg/
+
+Kilo@gmail.com -- Kilo -- Kilo123
+////////////////////////////////
+
+
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 1
+// Smartphone
+// Latest model smartphone with amazing features
+// 699.99
+// 50
+// 1
+// 2024-11-22 18:17:49
+// /assets/img/productsImg/1-main.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 2
+// Laptop
+// Powerful laptop for gaming and work
+// 1199.99
+// 30
+// 1
+// 2024-11-22 18:17:49
+// /assets/img/productsImg/1-back.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 3
+// Novel
+// Bestselling novel of the year
+// 19.99
+// 100
+// 2
+// 2024-11-22 18:17:49
+// /assets/img/productsImg/73849.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 4
+// T-shirt
+// Comfortable cotton T-shirt
+// 9.99
+// 200
+// 3
+// 2024-11-22 18:17:49
+// /assets/img/productsImg/1-back2.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 5
+// Killian Fievet
+// rthh
+// 23.00
+// 23
+// 0
+// 2025-01-12 02:31:21
+// /assets/img/productsImg/12323.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 6
+// Killian Fievet
+// rthh
+// 23.00
+// 23
+// 0
+// 2025-01-12 02:31:34
+// /assets/img/productsImg/789234.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 7
+// Killian Fievet
+// rthh
+// 23.00
+// 23
+// 0
+// 2025-01-12 02:31:45
+// /assets/img/productsImg/732648.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 8
+// Killian Fievet
+// rthh
+// 23.00
+// 23
+// 0
+// 2025-01-12 02:31:52
+// /assets/img/productsImg/08374.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 9
+// Lolo
+// La best
+// 10000.99
+// 1
+// 0
+// 2025-01-14 22:27:43
+// /assets/img/productsImg/52343.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 10
+// ddd
+// ddd
+// 12.00
+// 12
+// 0
+// 2025-01-14 22:31:00
+// /assets/img/productsImg/218736.jpg
+	
+// Éditer Éditer
+// Copier Copier
+// Supprimer Supprimer
+// 11
+// ddd
+// dddddd
+// 45124.00
+// 3213
+// 0
+// 2025-01-14 22:31:09
+// /assets/img/productsImg/ImgLoading.png
