@@ -1,8 +1,15 @@
-<h1 class="text-center my-4">Filtrer les Produits</h1>
-<?php var_dump($_SESSION); ?>
 
-<div class="container">
+<div class="container mt-5">
+<h1 class="title-h1 text-center">Filtrer les Produits</h1>
+<?php // var_dump($_SESSION); ?>
+
     <form method="GET" action="index.php" class="row g-3 mb-4">
+        <div class="col-md-12">
+            <label for="search" class="form-label">Rechercher un produit :</label>
+            <input type="text" name="search" id="search" class="form-control" 
+                value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>" 
+                placeholder="Entrez le nom du produit...">
+        </div>
         <div class="col-md-4">
             <label for="brand" class="form-label">Marque :</label>
             <select name="brand" id="brand" class="form-select">

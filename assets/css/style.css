@@ -2,8 +2,8 @@
 /* -----------------------------------GLOBAL----------------------------------- */
 /* ---------------------------------------------------------------------------- */
 body {
-    margin: 0;
     padding: 0;
+    margin: 0;
     text-decoration: none;
     box-sizing: border-box;
     background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
@@ -14,7 +14,6 @@ body {
 
 .title {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: rebeccapurple;
 }
 
 .text {
@@ -35,13 +34,14 @@ body {
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    padding: 15px 5%;
+    padding: 5px 5%;
     position: fixed;
     width: 90%;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
+    transition: all ease-in-out 0.3s;
 }
 
 .logo {
@@ -53,7 +53,7 @@ body {
     color: white;
     font-size: 18px;
     padding: 8px 15px;
-    transition: all 0.3s ease-in-out;
+    transition: ease-in-out 0.5s;
 }
 
 .navbar-nav .nav-link:hover {
@@ -61,7 +61,11 @@ body {
     border-radius: 8px;
 }
 
-.btn-login {
+.navbar-toggler {
+    margin-right: 100px;
+}
+
+.btn-login, .btn-logout {
     background: linear-gradient(to right, #ff7eb3, #ff758c);
     color: white !important;
     border-radius: 8px;
@@ -69,7 +73,7 @@ body {
     transition: all 0.3s;
 }
 
-.btn-login:hover {
+.btn-login:hover, .btn-logout:hover {
     background: linear-gradient(to right, #ff758c, #ff7eb3);
     transform: scale(1.05);
 }
@@ -81,18 +85,33 @@ body {
     font-weight: bold;
     font-size: 18px;
     color: white;
+    text-align: center;
 }
 
+.scrolled {
+    background-color: #2c3e50;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    border-bottom: 2px solid white;
+    border-radius: 0;
+}
 
 /* -------------------------------------------------------------------------------- */
 /* ------------------------------------HOME.PHP------------------------------------ */
 /* -------------------------------------------------------------------------------- */
-
+.title-h1 {
+    margin-top: 25vh;
+}
 
 /* ------------------------------------------------------------------------------------ */
 /* ------------------------------------PRODUCTS.PHP------------------------------------ */
 /* ------------------------------------------------------------------------------------ */
-
+.noProduct {
+    font-size: 32px;
+    font-weight: bold;
+    color: #654d82;
+}
 
 /* ---------------------------------------------------------------------------------- */
 /* ------------------------------------FILTER.PHP------------------------------------ */
@@ -103,12 +122,190 @@ body {
 /* ------------------------------------CART.PHP------------------------------------ */
 /* -------------------------------------------------------------------------------- */
 
+/* Conteneur principal */
+/* .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+} */
 
-/* --------------------------------------------------------------------------------- */
-/* ------------------------------------LOGIN.PHP------------------------------------ */
-/* --------------------------------------------------------------------------------- */
+/* Titre principal */
+.cart-title-h1 {
+    margin-top: 15vh;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px solid #28a745;
+    display: inline-block;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Message si non connecté */
+.no-connect-cart-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #dc3545;
+    text-align: center;
+    background: #ffe5e5;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+    position: relative;
+    top: 50vh;
+    transform: translateY(-50%);
+}
+
+/* Cartes produits */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Contenu de la carte */
+.card-body {
+    background: #f8f9fa;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #212529;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.text-primary {
+    color: #007bff !important;
+    font-weight: bold;
+}
+
+.text-success {
+    color: #28a745 !important;
+    font-weight: bold;
+}
+
+/* Bouton de suppression */
+.btn-danger {
+    background: #dc3545;
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+/* Total du panier */
+.total-cart {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: right;
+    color: #28a745;
+    border-top: 2px solid #28a745;
+    padding-top: 10px;
+}
+
+
+
+/* ---------------------------------------------------------------------------------- */
+/* ------------------------------------PROFIL.PHP------------------------------------ */
+/* ---------------------------------------------------------------------------------- */
+.profil-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.container-container {
+    max-width: 900px;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Image de profil */
+.profil-img {
+    width: 120px;
+    border-radius: 50%;
+    /* border: 3px solid #007bff; */
+}
+
+/* Texte bien aligné */
+.profil-details p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Bouton stylisé */
+.btn-danger {
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+/* Responsive : Passer en colonne sur mobile */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
 
 
 /* -------------------------------------------------------------------------------- */
 /* ----------------------------------REGISTER.PHP---------------------------------- */
-/* --------------------------------------------------------------------------------
+/* -------------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------------- */
+/* -----------------------------------FOOTER.PHP----------------------------------- */
+/* -------------------------------------------------------------------------------- */
+.footer-container {
+    background-color: #22272b;
+    min-height: max-content;
+    margin-top: 10vh;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr);
+}

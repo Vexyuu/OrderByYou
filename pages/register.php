@@ -33,17 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <style>
         body {
-            background: linear-gradient(to right, #6a11cb, #2575fc); /* Dégradé violet -> bleu */
+            /* background: linear-gradient(to right, #6a11cb, #2575fc); Dégradé violet -> bleu */
         }
         .form-container {
             min-height: calc(100vh - 70px); /* Ajuste en fonction de la hauteur du header */
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 15vh;
             padding: 20px;
         }
         .card {
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 15px;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
             animation: fadeIn 0.5s ease-in-out;
@@ -71,29 +72,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="container form-container">
-    <div class="row justify-content-center align-items-center">
-        <!-- Colonne pour le logo -->
-        <div class="col-md-4 text-center logo-container">
-            <img src="./assets/img/OrderByYou.png" alt="Logo officiel" style="width: 50%;">
-        </div>
-        <!-- Colonne pour le formulaire -->
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="card">
-                <h2 class="text-center text-primary">Inscription</h2>
+                <h2 class="text-center text-primary">Création de votre compte</h2>
                 <form method="POST" action="index.php?pages=register">
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label class="form-label" for="username">Nom d'utilisateur</label>
                         <input class="form-control" type="text" name="username" id="username" placeholder="Nom" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label class="form-label" for="email">Email</label>
                         <input class="form-control" type="email" name="email" id="email" placeholder="exemple@gmail.com" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label class="form-label" for="password">Mot de passe</label>
                         <input class="form-control" type="password" name="password" id="password" placeholder="Mot de passe" required>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label class="form-label" for="phone">Téléphone</label>
                         <input class="form-control" type="tel" name="phone" id="phone" placeholder="00 00 00 00 00 (Optionnel)">
                     </div>
@@ -105,7 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
             </div>
         </div>
-    </div>
 </div>
 
 </body>

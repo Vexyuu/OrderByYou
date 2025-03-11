@@ -8,12 +8,16 @@ try {
     }
 
     // Initialisation des variables de filtrage
+    $searchValue = isset($_GET['search']) ? trim($_GET['search']) : '';
     $marque = isset($_GET['brand']) ? $_GET['brand'] : '';
     $prix_min = isset($_GET['prix_min']) ? (float)$_GET['prix_min'] : 0;
     $prix_max = isset($_GET['prix_max']) ? (float)$_GET['prix_max'] : 999999;
 
     // Construction de la requête SQL
     $sql = "SELECT * FROM products WHERE 1=1";
+    if ($searchValue) {
+        $sql .= " AND name LIKE :search";
+    }
     if ($marque) {
         $sql .= " AND brand = :marque";
     }
@@ -26,6 +30,9 @@ try {
 
     $stmt = $dbb->prepare($sql);
 
+    if ($searchValue) {
+        $stmt->bindValue(':search', "%$searchValue%", PDO::PARAM_STR);
+    }
     if ($marque) {
         $stmt->bindParam(':marque', $marque, PDO::PARAM_STR);
     }

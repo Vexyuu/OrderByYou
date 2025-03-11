@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 28 fév. 2025 à 11:22
+-- Généré le : mar. 11 mars 2025 à 09:51
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -37,47 +37,27 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `cart`
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `created_at`) VALUES
-(16, 6, 28, 1, '2025-02-27 19:13:10'),
+(26, 6, 28, 1, '2025-03-05 09:31:04'),
+(31, 6, 27, 1, '2025-03-05 14:47:23'),
 (9, 9, 25, 1, '2025-02-27 15:39:19'),
 (8, 9, 28, 1, '2025-02-27 15:39:17'),
-(7, 9, 27, 6, '2025-02-27 15:38:36'),
+(7, 9, 27, 8, '2025-02-27 15:38:36'),
 (18, 6, 36, 1, '2025-02-27 22:07:24'),
 (19, 10, 25, 1, '2025-02-27 22:29:30'),
 (20, 10, 12, 1, '2025-02-27 22:29:33'),
 (21, 10, 17, 1, '2025-02-27 22:29:35'),
 (22, 10, 20, 1, '2025-02-27 22:29:37'),
 (23, 10, 32, 1, '2025-02-27 22:29:39'),
-(24, 10, 35, 1, '2025-02-27 22:29:41');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `categories`
---
-
-DROP TABLE IF EXISTS `categories`;
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `created_at`) VALUES
-(1, 'Electronics', '2024-11-22 18:14:13'),
-(2, 'Books', '2024-11-22 18:14:13'),
-(3, 'Clothing', '2024-11-22 18:14:13');
+(24, 10, 35, 1, '2025-02-27 22:29:41'),
+(28, 6, 28, 1, '2025-03-05 09:31:08'),
+(30, 6, 27, 1, '2025-03-05 14:47:22');
 
 -- --------------------------------------------------------
 
@@ -163,25 +143,6 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `stock`, `brand`, 
 (34, 'Samsung Galaxy S22 Ultra NOIR', 'Le Samsung Galaxy S22 Ultra est un smartphone d’exception.\r\nAvec l’ADN du Galaxy S en son cœur, il embarque toute l’expérience d’un Galaxy Note avec un cadre en aluminium poli, une conception symétrique et un bloc photo intégré à la face arrière.', '869.00', 100, 'Samsung', 1, '2025-01-31 19:52:47', '/assets/img/productsImg/SamsungGalaxyS22Ultra.jpg'),
 (35, 'Samsung Galaxy S22+', 'Retrouvez tout l’ADN Galaxy S au cœur du design d’exception des Galaxy S22 et Galaxy S22+.\r\nLes bords ultra fins se fondent dans un cadre poli symétrique et viennent harmonieusement entourer l’écran, tandis que l’arrière abrite un système photo à trois optiques.', '679.99', 100, 'Samsung', 1, '2025-01-31 19:52:47', '/assets/img/productsImg/SamsungGalaxyS22+jpg'),
 (36, 'Samsung Galaxy S22', 'Les bords ultra fins se fondent dans un cadre poli symétrique et viennent harmonieusement entourer l’écran, tandis que l’arrière abrite un système photo à trois optiques.\r\nUne véritable œuvre d’art technologique, dans le creux de votre main.', '525.00', 100, 'Samsung', 1, '2025-01-31 19:53:56', '/assets/img/productsImg/SamsungGalaxyS22.jpg');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `reviews`
---
-
-DROP TABLE IF EXISTS `reviews`;
-CREATE TABLE IF NOT EXISTS `reviews` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `rating` tinyint DEFAULT NULL,
-  `comment` text,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 

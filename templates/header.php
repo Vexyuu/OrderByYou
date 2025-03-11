@@ -25,25 +25,34 @@ require_once './config/database.php';
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="index.php?pages=home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="index.php?pages=cart">Panier</a></li>
-                    <?php if (!isset($_SESSION['user'])): ?>
+                    <?php if (!isset($_SESSION['user_id'])): ?>
+                        <li class="nav-item"><a class="nav-link btn-register" href="index.php?pages=register">Inscription</a></li>
                         <li class="nav-item"><a class="nav-link btn-login" href="index.php?pages=login">Connexion</a></li>
                     <?php else: ?>
                         <li class="nav-item"><a class="nav-link" href="index.php?pages=profil">Profil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.php?pages=logout">Déconnexion</a></li>
+                        <li class="nav-item"><a class="nav-link btn-logout" href="index.php?pages=logout">Déconnexion</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="profil-name">
+        <img src="./assets/img/profil.png" width="60px" alt="logo profil"><br>
         <strong><?php echo isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']) : 'Invité'; ?></strong>
     </div>
 </header>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script>
+    // Changer la navigation de style lors du scroll (y > 200)
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            document.querySelector('.glass-header').classList.add('scrolled');
+            } else {
+                document.querySelector('.glass-header').classList.remove('scrolled');
+            }
+    });
+</script>
 </html>
 
-<style>
-
-</style>
