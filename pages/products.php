@@ -42,7 +42,7 @@ function addToCart(productId, buttonElement) {
             body: `product_id=${productId}`
         }).then(response => response.text())
           .then(data => {
-            alert("Produit ajouter au panier avec succès !")
+            alert("Produit ajouté au panier avec succès !")
               console.log(data);
           });
     } else {

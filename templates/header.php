@@ -38,7 +38,8 @@ require_once './config/database.php';
     </nav>
     <div class="profil-name">
         <img src="./assets/img/profil.png" width="60px" alt="logo profil"><br>
-        <strong><?php echo isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']) : 'Invité'; ?></strong>
+        <strong><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Invité'; ?></strong>
+       
     </div>
 </header>
 

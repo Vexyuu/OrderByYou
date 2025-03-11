@@ -239,10 +239,17 @@ body {
 /* ------------------------------------PROFIL.PHP------------------------------------ */
 /* ---------------------------------------------------------------------------------- */
 .profil-wrapper {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: space-between;
     align-items: center;
+    min-height: 80vh; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    margin: 0 auto;
     min-height: 80vh;
+    max-width: 850px;
 }
 
 .profil-img {

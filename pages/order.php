@@ -55,6 +55,6 @@ $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
 $stmt->execute();
 
 echo "Commande validée avec succès !";
-header("Location: index.php?pages=order_success");
+header("Location: index.php?pages=home");
 exit;
 ?>
