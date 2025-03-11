@@ -1,9 +1,9 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 
-// if (!isset($_SESSION)) {
-//     session_start();
-// }
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 if (!isset($_SESSION['user_id'])) {
     echo "<p class='no-connect-cart-text'>Vous devez être connecté pour accéder au panier.</p>";
@@ -14,13 +14,12 @@ $userId = $_SESSION['user_id'];
 $cart = $_SESSION['cart'] ?? [];
 
 // ----------------------------------------------------------------
-// Récupérer le panier de l'user depuis la db si non initialisé
+// Récupérer le panier de l'user depuis la DB si non initialisé
 // ----------------------------------------------------------------
 if (empty($cart)) {
     $stmt = $dbb->prepare("SELECT product_id, quantity FROM cart WHERE user_id = :user_id");
     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $stmt->execute();
-    
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $cart[$row['product_id']] = $row['quantity'];
     }
@@ -72,10 +71,10 @@ if (isset($_POST['remove_product_id'])) {
 ?>
 
 <!-- Affichage du panier -->
-<div class="container mt-5">
+<div class="cart-container container mt-5">
     <h1 class="cart-title-h1 text-center mb-5">Mon Panier</h1>
     <?php if (empty($cart)): ?>
-        <p class="text-center text-muted">Votre panier est vide.</p>
+        <p class="no-connect-cart-text">Votre panier est vide.</p>
     <?php else: ?>
         <?php
         $ids = implode(',', array_keys($cart));
@@ -109,6 +108,7 @@ if (isset($_POST['remove_product_id'])) {
             <?php endforeach; ?>
         </div>
         <form action="index.php?pages=order" method="POST">
+            <input type="hidden" name="total_price" value="<?= $totalPanier ?>">
             <button type="submit" class="btn btn-primary">Commander</button>
         </form>
         <h3 class='text-end'>Total du Panier : <span class='text-success'><?= number_format($totalPanier, 2, ',', ' ') ?>€</span></h3>

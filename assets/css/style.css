@@ -1,3 +1,13 @@
+/* Variables CSS pour les couleurs et les polices */
+:root {
+    --primary-color: #28a745;
+    --secondary-color: #dc3545;
+    --background-gradient: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    --font-family-primary: 'Poppins', sans-serif;
+    --font-family-secondary: Arial, Helvetica, sans-serif;
+    --font-family-title: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 /* ---------------------------------------------------------------------------- */
 /* -----------------------------------GLOBAL----------------------------------- */
 /* ---------------------------------------------------------------------------- */
@@ -6,29 +16,26 @@ body {
     margin: 0;
     text-decoration: none;
     box-sizing: border-box;
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-    font-family: 'Poppins', sans-serif;
+    background: var(--background-gradient);
+    font-family: var(--font-family-primary);
     color: white;
 }
 
-
 .title {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--font-family-title);
 }
 
-.text {
-    font-family: Arial, Helvetica, sans-serif;
+.text, .button {
+    font-family: var(--font-family-secondary);
 }
 
 .button {
-    font-family: Arial, Helvetica, sans-serif;
     font-style: oblique;
 }
 
 /* ---------------------------------------------------------------------------------- */
 /* ------------------------------------HEADER.PHP------------------------------------ */
 /* ---------------------------------------------------------------------------------- */
-/* --- STYLE MODERNE GLASSMORPHISM --- */
 .glass-header {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
@@ -117,49 +124,42 @@ body {
 /* ------------------------------------FILTER.PHP------------------------------------ */
 /* ---------------------------------------------------------------------------------- */
 
-
 /* -------------------------------------------------------------------------------- */
 /* ------------------------------------CART.PHP------------------------------------ */
 /* -------------------------------------------------------------------------------- */
-
-/* Conteneur principal */
-/* .container {
-    max-width: 1200px;
+.cart-container {
+    max-width: 800px;
+    min-height: 100vh;
     margin: auto;
-    padding: 20px;
-} */
+    padding: 0 20px;
+}
 
-/* Titre principal */
 .cart-title-h1 {
     margin-top: 15vh;
     font-size: 2.5rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
-    border-bottom: 3px solid #28a745;
+    border-bottom: 3px solid var(--primary-color);
     display: inline-block;
     padding-bottom: 10px;
     text-align: center;
     width: 100%;
 }
 
-/* Message si non connecté */
 .no-connect-cart-text {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #dc3545;
+    color: var(--secondary-color);
     text-align: center;
     background: #ffe5e5;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
     padding: 15px;
     border-radius: 10px;
-    max-width: 600px;
     margin: auto;
-    position: relative;
-    top: 50vh;
     transform: translateY(-50%);
 }
 
-/* Cartes produits */
 .card {
     border: none;
     border-radius: 15px;
@@ -179,7 +179,6 @@ body {
     object-fit: cover;
 }
 
-/* Contenu de la carte */
 .card-body {
     background: #f8f9fa;
     padding: 15px;
@@ -207,13 +206,12 @@ body {
 }
 
 .text-success {
-    color: #28a745 !important;
+    color: var(--primary-color) !important;
     font-weight: bold;
 }
 
-/* Bouton de suppression */
 .btn-danger {
-    background: #dc3545;
+    background: var(--secondary-color);
     border: none;
     padding: 8px 12px;
     font-size: 0.9rem;
@@ -227,18 +225,15 @@ body {
     transform: scale(1.05);
 }
 
-/* Total du panier */
 .total-cart {
     font-size: 1.5rem;
     font-weight: bold;
     margin-top: 20px;
     text-align: right;
-    color: #28a745;
-    border-top: 2px solid #28a745;
+    color: var(--primary-color);
+    border-top: 2px solid var(--primary-color);
     padding-top: 10px;
 }
-
-
 
 /* ---------------------------------------------------------------------------------- */
 /* ------------------------------------PROFIL.PHP------------------------------------ */
@@ -250,49 +245,23 @@ body {
     min-height: 80vh;
 }
 
-.container-container {
-    max-width: 900px;
-    padding: 30px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Image de profil */
 .profil-img {
     width: 120px;
     border-radius: 50%;
-    /* border: 3px solid #007bff; */
 }
 
-/* Texte bien aligné */
 .profil-details p {
     font-size: 1rem;
     color: #555;
     margin-bottom: 8px;
 }
 
-/* Bouton stylisé */
-.btn-danger {
-    font-weight: bold;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.btn-danger:hover {
-    background: #c82333;
-}
-
-/* Responsive : Passer en colonne sur mobile */
 @media (max-width: 768px) {
     .row {
         flex-direction: column;
         text-align: center;
     }
 }
-
-
-
 
 /* -------------------------------------------------------------------------------- */
 /* ----------------------------------REGISTER.PHP---------------------------------- */
@@ -305,7 +274,6 @@ body {
     background-color: #22272b;
     min-height: max-content;
     margin-top: 10vh;
-    padding: 20px;
     display: grid;
     grid-template-columns: minmax(200px, 1fr);
 }

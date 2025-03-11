@@ -14,6 +14,5 @@ if (file_exists($pagePath)) {
 } else {
     // include './pages/404.php';
 }
-
 include './templates/footer.php';
 ?>

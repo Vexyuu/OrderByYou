@@ -37,3 +37,15 @@ Client lourd
 Client léger
 Responsive mobile / App mobile
 Application serveur
+
+
+
+Peaufinage :
+- ajuster taille image
+- couleur bleu bouton
+- prix_min & prix_max
+- rendre tous les grid responsive
+- bord arrondis bar verte panier (optionnel)
+- nom trop long retourner à la ligne
+- inscription centrer la div & rediriger vers login après creation compte
+- quand pas connecté, corriger style panier

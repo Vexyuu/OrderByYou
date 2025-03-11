@@ -1,7 +1,6 @@
 <!-- footer.php -->
 <footer>
     <div class="container-footer">
-        <div></div>
 
         <div class="footer-links">
             <a href="index.php">Accueil</a>
@@ -21,20 +20,14 @@
     </div>
 </footer>
 
-<!-- Icônes FontAwesome -->
-<!-- <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script> -->
 
 <style>
     footer {
         background: #222;
         color: white;
         text-align: center;
-        padding: 20px 0;
+        padding: 20px;
         margin-top: 20px;
-    }
-    .container {
-        width: 80%;
-        margin: auto;
     }
     .footer-links a, .footer-social a {
         color: white;
