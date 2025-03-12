@@ -49,3 +49,4 @@ Peaufinage :
 - nom trop long retourner à la ligne
 - inscription centrer la div & rediriger vers login après creation compte
 - quand pas connecté, corriger style panier
+

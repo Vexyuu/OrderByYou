@@ -33,6 +33,13 @@ body {
     font-style: oblique;
 }
 
+.center-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 /* ---------------------------------------------------------------------------------- */
 /* ------------------------------------HEADER.PHP------------------------------------ */
 /* ---------------------------------------------------------------------------------- */
@@ -128,38 +135,41 @@ body {
 /* ------------------------------------CART.PHP------------------------------------ */
 /* -------------------------------------------------------------------------------- */
 .cart-container {
-    max-width: 800px;
+    max-width: 900px;
     min-height: 100vh;
     margin: auto;
-    padding: 0 20px;
+    padding: 30px 20px;
+    border-radius: 10px;
 }
 
+/* ----------- Titre du panier ----------- */
 .cart-title-h1 {
-    margin-top: 15vh;
-    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-size: 2.8rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
-    border-bottom: 3px solid var(--primary-color);
-    display: inline-block;
-    padding-bottom: 10px;
+    color: white;
     text-align: center;
-    width: 100%;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
 }
 
-.no-connect-cart-text {
-    font-size: 1.5rem;
+/* ----------- Message si le panier est vide ----------- */
+.no-cart-text {
+    font-size: 1.6rem;
     font-weight: bold;
-    color: var(--secondary-color);
+    color: white;
     text-align: center;
-    background: #ffe5e5;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    background: rgba(220, 53, 69, 0.8);
     padding: 15px;
     border-radius: 10px;
-    margin: auto;
-    transform: translateY(-50%);
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
 
+/* ----------- Style des cartes produit ----------- */
 .card {
     border: none;
     border-radius: 15px;
@@ -171,37 +181,38 @@ body {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .card-img-top {
-    height: 250px;
+    height: 220px;
     object-fit: cover;
 }
 
 .card-body {
     background: #f8f9fa;
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .card-title {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #212529;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .card-text {
     font-size: 1rem;
-    margin-bottom: 5px;
     color: #555;
+    /* text-align: center; */
 }
 
 .text-primary {
-    color: #007bff !important;
+    /* color: black !important; */
     font-weight: bold;
 }
 
@@ -210,58 +221,138 @@ body {
     font-weight: bold;
 }
 
-.btn-danger {
-    background: var(--secondary-color);
+/* ----------- Bouton 1 ----------- */
+.cart-container .btn-danger {
+    background: rgb(245, 125, 125);
     border: none;
-    padding: 8px 12px;
-    font-size: 0.9rem;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
     border-radius: 5px;
     transition: background 0.3s ease, transform 0.2s ease;
-    width: 100%;
+    /* width: 50%; */
+    flex: 0.5;
+    text-align: center;
 }
 
-.btn-danger:hover {
+.cart-container .btn-danger:hover {
     background: #c82333;
     transform: scale(1.05);
 }
 
+/* ----------- Bouton TOUT ----------- */
+.cart-container .btn-danger-tout {
+    color: white;
+    background: var(--secondary-color);
+    border: none;
+    margin-top: 10px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    /* width: 100%; */
+    flex: 0.5;
+    text-align: center;
+}
+
+.cart-container .btn-danger-tout:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+/* ----------- Bouton Commander ----------- */
+.cart-container .btn-primary {
+    background: var(--primary-color);
+    border: none;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    width: 50%;
+    margin-top: 20px;
+}
+
+.cart-container .btn-primary:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* ----------- Total du panier ----------- */
 .total-cart {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: bold;
     margin-top: 20px;
     text-align: right;
-    color: var(--primary-color);
-    border-top: 2px solid var(--primary-color);
-    padding-top: 10px;
+    color: white;
+    border-top: 3px solid var(--primary-color);
+    padding-top: 15px;
 }
+
 
 /* ---------------------------------------------------------------------------------- */
 /* ------------------------------------PROFIL.PHP------------------------------------ */
 /* ---------------------------------------------------------------------------------- */
-.profil-wrapper {
-    /* display: flex;
-    justify-content: space-between;
+.profile-wrapper {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    min-height: 80vh; */
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: center;
-    margin: 0 auto;
+    justify-content: center;
+    padding-top: 80px;
     min-height: 80vh;
     max-width: 850px;
+    margin: 0 auto;
+}
+
+.container-profile {
+    width: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .profil-img {
     width: 120px;
+    height: 120px;
     border-radius: 50%;
+    object-fit: cover;
+    /* border: 3px solid #007bff; */
 }
 
-.profil-details p {
+.profile-details p {
     font-size: 1rem;
     color: #555;
     margin-bottom: 8px;
 }
+
+/* Bouton Déconnexion plus moderne */
+.profile-details .btn-danger {
+    width: 30%;
+    background: linear-gradient(135deg, #ff4d4d, #cc0000);
+    border: none;
+    transition: 0.3s;
+}
+
+.profil-details .btn-danger:hover {
+    background: linear-gradient(135deg, #cc0000, #990000);
+    transform: scale(1.05);
+}
+
+/* Liste des commandes */
+.list-group-item {
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Statut des commandes */
+.list-group-item:contains("Expédié") { color: green; }
+.list-group-item:contains("Payé") { color: blue; }
+.list-group-item:contains("En attente") { color: orange; }
 
 @media (max-width: 768px) {
     .row {
@@ -269,6 +360,7 @@ body {
         text-align: center;
     }
 }
+
 
 /* -------------------------------------------------------------------------------- */
 /* ----------------------------------REGISTER.PHP---------------------------------- */

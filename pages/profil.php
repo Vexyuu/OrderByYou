@@ -6,11 +6,9 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
-// Pour des raisons de sécurité, on ne doit pas afficher l'ID réel de l'utilisateur
-// $displayUserId = $_SESSION['user_id'] + rand(1, 1000);
 ?>
-
-<div class="profil-wrapper">
+<div style="height: 80px;"></div> <!-- Ajuste la hauteur si nécessaire -->
+<div class="profile-wrapper">
     <div class="container-profile">
         <h1 class="text-center">Profil</h1>
         <div class="info card p-4 shadow-lg">
@@ -46,13 +44,19 @@ if (!isset($_SESSION['username'])) {
             ?>
             <h3 class="text-center mt-3">Historique des commandes</h3>
             <ul class="list-group">
-                <?php foreach ($orders as $order):
-                    $i = 0
-                    ?>
-                    <li class="list-group-item">
-                        Commande n°<?= $i += 1 ?> - <?= $order['status'] ?> - Total : <?= $order['total_price'] ?> €
-                    </li>
-                <?php endforeach; ?>
+                <?php
+                    $i = 0;
+                    if (isset($orders) && !empty($orders)) {
+                        foreach ($orders as $order) {
+                        ?>
+                        <li class="list-group-item">
+                            Commande n°<?= ++$i ?> - <?= htmlspecialchars($order['status']) ?> - Total : <?= htmlspecialchars($order['total_price']) ?> €
+                        </li>
+                    <?php }
+                    } else {
+                        echo '<li class="list-group-item">Aucune commande trouvée</li>';
+                    };
+                ?>
             </ul>
         </div>
 </div>

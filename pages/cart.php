@@ -6,8 +6,8 @@ if (!isset($_SESSION)) {
 }
 
 if (!isset($_SESSION['user_id'])) {
-    echo "<p class='no-connect-cart-text'>Vous devez être connecté pour accéder au panier.</p>";
-    exit;
+    echo "<p class='no-cart-text center-text'>Vous devez être connecté pour accéder au panier.</p>";
+    exit();
 }
 
 $userId = $_SESSION['user_id'];
@@ -50,7 +50,7 @@ if (isset($_POST['product_id'])) {
     exit;
 }
 // ----------------------------------------------------------------
-// Supprimer un produit ou réduire la quantité
+// Supprimer un produit par quantité
 // ----------------------------------------------------------------
 if (isset($_POST['remove_product_id'])) {
     $productId = $_POST['remove_product_id'];
@@ -68,13 +68,28 @@ if (isset($_POST['remove_product_id'])) {
         $_SESSION['cart'] = $cart;
     }
 }
+// ----------------------------------------------------------------
+// Supprimer un produit totalement
+// ----------------------------------------------------------------
+if (isset($_POST['remove_product_all_id'])) {
+    $productId = $_POST['remove_product_all_id'];
+    if (isset($cart[$productId])) {
+        $stmt = $dbb->prepare("DELETE FROM cart WHERE user_id = :user_id AND product_id = :product_id");
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':product_id', $productId, PDO::PARAM_INT);
+        $stmt->execute();
+        unset($cart[$productId]);
+        $_SESSION['cart'] = $cart;
+    }
+}
 ?>
 
+<div style="height: 90px;"></div>
 <!-- Affichage du panier -->
 <div class="cart-container container mt-5">
     <h1 class="cart-title-h1 text-center mb-5">Mon Panier</h1>
     <?php if (empty($cart)): ?>
-        <p class="no-connect-cart-text">Votre panier est vide.</p>
+        <p class="no-cart-text">Votre panier est vide.</p>
     <?php else: ?>
         <?php
         $ids = implode(',', array_keys($cart));
@@ -90,7 +105,7 @@ if (isset($_POST['remove_product_id'])) {
                 $totalProductPrice = $product['price'] * $quantity;
                 $totalPanier += $totalProductPrice;
             ?>
-            <div class='col-md-6 col-lg-3 mb-4'>
+            <div class='col-md-6 col-lg-4 mb-4'>
                 <div class='card h-100'>
                     <img src='./<?= htmlspecialchars($product['image_path']) ?>' alt='<?= htmlspecialchars($product['name']) ?>' class='card-img-top' style='max-height: 300px; object-fit: cover;'>
                     <div class='card-body d-flex flex-column'>
@@ -102,6 +117,10 @@ if (isset($_POST['remove_product_id'])) {
                             <input type='hidden' name='remove_product_id' value='<?= $productId ?>'>
                             <button type='submit' class='btn btn-danger'>Retirer 1</button>
                         </form>
+                        <form method='POST' action='index.php?pages=cart' class='mt-auto'>
+                            <input type='hidden' name='remove_product_all_id' value='<?= $productId ?>'>
+                            <button type="submit" class="btn btn-danger-tout">Retirer tout</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -109,8 +128,16 @@ if (isset($_POST['remove_product_id'])) {
         </div>
         <form action="index.php?pages=order" method="POST">
             <input type="hidden" name="total_price" value="<?= $totalPanier ?>">
-            <button type="submit" class="btn btn-primary">Commander</button>
+            <button type="submit" class="btn btn-primary" onclick="OrderValidate()">Commander</button>
         </form>
-        <h3 class='text-end'>Total du Panier : <span class='text-success'><?= number_format($totalPanier, 2, ',', ' ') ?>€</span></h3>
+        <h3 class='text-end'>Total du Panier : <span class='text-success'><?= htmlspecialchars(number_format($totalPanier, 2, ',', ' ')) ?>€</span></h3>
     <?php endif; ?>
 </div>
+
+<script>
+function OrderValidate() {
+    if (confirm("Êtes-vous sûr de vouloir commander ?")) {
+        alert("Commande validée !");
+    }
+}
+</script>
