@@ -23,7 +23,10 @@ require_once './config/database.php';
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.php?pages=home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php?pages=home">Accueil</a></li>
+                    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                        <li class="nav-item"><a class="nav-link" href="index.php?pages=dashboard" style="color:rgb(212, 44, 44)">Dashboard</a></li>
+                    <?php endif; ?>
                     <li class="nav-item"><a class="nav-link" href="index.php?pages=cart">Panier</a></li>
                     <?php if (!isset($_SESSION['user_id'])): ?>
                         <li class="nav-item"><a class="nav-link btn-register" href="index.php?pages=register">Inscription</a></li>

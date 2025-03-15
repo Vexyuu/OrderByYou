@@ -15,6 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['username'] = $user['username'];
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_email'] = $user['email'];
+        $_SESSION['user_phone'] = $user['phone'];
+        $_SESSION['user_role'] = $user['role'];
         $_SESSION['user_creation'] = $user['created_at'];
 
         // Vérifier si l'utilisateur a un panier en base de données

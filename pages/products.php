@@ -6,7 +6,7 @@
                 <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
                     <div class="card h-100">
                         <img class="card-img-top" src="./<?= htmlspecialchars($product['image_path'] ?? 'default.png') ?>" 
-                             alt="Image de <?= htmlspecialchars($product['name']) ?>" style="max-height: 400px; object-fit: cover;">
+                             alt="Image de <?= htmlspecialchars($product['name']) ?>">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
                             <h6 class="card-subtitle mb-2 text-muted"><?= htmlspecialchars($product['brand']) ?></h6>
@@ -20,6 +20,11 @@
             <?php endforeach; ?>
         <?php else: ?>
             <i class="noProduct text-center">Aucun produit trouvé</i>
+            <ul>
+                <li class="list-noProduct">Vérifiez l'orthographe de votre recherche</li>
+                <li class="list-noProduct">Essayez avec des mots-clés différents</li>
+                <li class="list-noProduct">Contactez-nous pour plus d'informations</li>
+            </ul>
         <?php endif; ?>
     </div>
 </div>

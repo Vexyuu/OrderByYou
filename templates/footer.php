@@ -3,10 +3,10 @@
     <div class="container-footer">
 
         <div class="footer-links">
-            <a href="index.php">Accueil</a>
-            <a href="about.php">À propos</a>
-            <a href="contact.php">Contact</a>
-            <a href="privacy.php">Confidentialité</a>
+            <a href="index.php?pages=home">Accueil</a>
+            <a href="index.php?pages=about">À propos</a>
+            <a href="index.php?pages=contact">Contact</a>
+            <a href="index.php?pages=privacy">Confidentialité</a>
         </div>
         
         <div class="footer-social">

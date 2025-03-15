@@ -1,4 +1,4 @@
-/* Variables CSS pour les couleurs et les polices */
+/* ROOT VARIABLES */
 :root {
     --primary-color: #28a745;
     --secondary-color: #dc3545;
@@ -8,9 +8,7 @@
     --font-family-title: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* ---------------------------------------------------------------------------- */
-/* -----------------------------------GLOBAL----------------------------------- */
-/* ---------------------------------------------------------------------------- */
+/* GLOBAL STYLES */
 body {
     padding: 0;
     margin: 0;
@@ -40,9 +38,7 @@ body {
     text-align: center;
 }
 
-/* ---------------------------------------------------------------------------------- */
-/* ------------------------------------HEADER.PHP------------------------------------ */
-/* ---------------------------------------------------------------------------------- */
+/* HEADER STYLES */
 .glass-header {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
@@ -67,6 +63,7 @@ body {
     color: white;
     font-size: 18px;
     padding: 8px 15px;
+    margin: 0 5px;
     transition: ease-in-out 0.5s;
 }
 
@@ -111,29 +108,28 @@ body {
     border-radius: 0;
 }
 
-/* -------------------------------------------------------------------------------- */
-/* ------------------------------------HOME.PHP------------------------------------ */
-/* -------------------------------------------------------------------------------- */
+/* HOME PAGE STYLES */
 .title-h1 {
     margin-top: 25vh;
 }
 
-/* ------------------------------------------------------------------------------------ */
-/* ------------------------------------PRODUCTS.PHP------------------------------------ */
-/* ------------------------------------------------------------------------------------ */
+/* PRODUCTS PAGE STYLES */
 .noProduct {
-    font-size: 32px;
     font-weight: bold;
+    font-size: 2rem;
+    margin: 5vh 0;
     color: #654d82;
 }
 
-/* ---------------------------------------------------------------------------------- */
-/* ------------------------------------FILTER.PHP------------------------------------ */
-/* ---------------------------------------------------------------------------------- */
+.list-noProduct {
+    color: #654d82;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px;
+    font-style: italic;
+}
 
-/* -------------------------------------------------------------------------------- */
-/* ------------------------------------CART.PHP------------------------------------ */
-/* -------------------------------------------------------------------------------- */
+/* CART PAGE STYLES */
 .cart-container {
     max-width: 900px;
     min-height: 100vh;
@@ -142,7 +138,6 @@ body {
     border-radius: 10px;
 }
 
-/* ----------- Titre du panier ----------- */
 .cart-title-h1 {
     margin-bottom: 30px;
     font-size: 2.8rem;
@@ -155,7 +150,6 @@ body {
     padding-bottom: 15px;
 }
 
-/* ----------- Message si le panier est vide ----------- */
 .no-cart-text {
     font-size: 1.6rem;
     font-weight: bold;
@@ -169,7 +163,6 @@ body {
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
 
-/* ----------- Style des cartes produit ----------- */
 .card {
     border: none;
     border-radius: 15px;
@@ -182,11 +175,6 @@ body {
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.card-img-top {
-    height: 220px;
-    object-fit: cover;
 }
 
 .card-body {
@@ -208,11 +196,9 @@ body {
 .card-text {
     font-size: 1rem;
     color: #555;
-    /* text-align: center; */
 }
 
 .text-primary {
-    /* color: black !important; */
     font-weight: bold;
 }
 
@@ -221,7 +207,6 @@ body {
     font-weight: bold;
 }
 
-/* ----------- Bouton 1 ----------- */
 .cart-container .btn-danger {
     background: rgb(245, 125, 125);
     border: none;
@@ -231,7 +216,6 @@ body {
     text-transform: uppercase;
     border-radius: 5px;
     transition: background 0.3s ease, transform 0.2s ease;
-    /* width: 50%; */
     flex: 0.5;
     text-align: center;
 }
@@ -241,7 +225,6 @@ body {
     transform: scale(1.05);
 }
 
-/* ----------- Bouton TOUT ----------- */
 .cart-container .btn-danger-tout {
     color: white;
     background: var(--secondary-color);
@@ -253,7 +236,6 @@ body {
     text-transform: uppercase;
     border-radius: 5px;
     transition: background 0.3s ease, transform 0.2s ease;
-    /* width: 100%; */
     flex: 0.5;
     text-align: center;
 }
@@ -262,7 +244,7 @@ body {
     background: #c82333;
     transform: scale(1.05);
 }
-/* ----------- Bouton Commander ----------- */
+
 .cart-container .btn-primary {
     background: var(--primary-color);
     border: none;
@@ -281,7 +263,6 @@ body {
     transform: scale(1.05);
 }
 
-/* ----------- Total du panier ----------- */
 .total-cart {
     font-size: 1.6rem;
     font-weight: bold;
@@ -292,10 +273,7 @@ body {
     padding-top: 15px;
 }
 
-
-/* ---------------------------------------------------------------------------------- */
-/* ------------------------------------PROFIL.PHP------------------------------------ */
-/* ---------------------------------------------------------------------------------- */
+/* PROFILE PAGE STYLES */
 .profile-wrapper {
     display: flex;
     flex-direction: column;
@@ -303,33 +281,43 @@ body {
     justify-content: center;
     padding-top: 80px;
     min-height: 80vh;
-    max-width: 850px;
+    max-width: 60%;
     margin: 0 auto;
 }
 
 .container-profile {
     width: 100%;
-    background: white;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .profil-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    /* border: 3px solid #007bff; */
+    width: 220px;
+    height: 220px;
+    border-radius: 15px;
+    border: 3px solid #0f2027;
+    padding: 20px;
 }
 
-.profile-details p {
+.profil-details {
+    border-left: 3px solid #0f2027;
+}
+
+#profil-img input {
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    transition: 0.3s;
+}
+
+.profil-details p {
     font-size: 1rem;
     color: #555;
     margin-bottom: 8px;
 }
 
-/* Bouton Déconnexion plus moderne */
 .profile-details .btn-danger {
     width: 30%;
     background: linear-gradient(135deg, #ff4d4d, #cc0000);
@@ -342,37 +330,29 @@ body {
     transform: scale(1.05);
 }
 
-/* Liste des commandes */
 .list-group-item {
     border-radius: 8px;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-/* Statut des commandes */
 .list-group-item:contains("Expédié") { color: green; }
 .list-group-item:contains("Payé") { color: blue; }
 .list-group-item:contains("En attente") { color: orange; }
 
-@media (max-width: 768px) {
-    .row {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-
-/* -------------------------------------------------------------------------------- */
-/* ----------------------------------REGISTER.PHP---------------------------------- */
-/* -------------------------------------------------------------------------------- */
-
-/* -------------------------------------------------------------------------------- */
-/* -----------------------------------FOOTER.PHP----------------------------------- */
-/* -------------------------------------------------------------------------------- */
+/* FOOTER STYLES */
 .footer-container {
     background-color: #22272b;
     min-height: max-content;
     margin-top: 10vh;
     display: grid;
     grid-template-columns: minmax(200px, 1fr);
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        text-align: center;
+    }
 }

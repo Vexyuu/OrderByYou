@@ -23,14 +23,14 @@
 
         <div class="col-md-4">
             <label for="prix_min" class="form-label">Prix Min :</label>
-            <input type="number" name="prix_min" id="prix_min" class="form-control" 
-                value="<?= isset($_GET['prix_min']) ? htmlspecialchars($_GET['prix_min']) : '' ?>" min="0">
+            <input type="number" name="prix_min" id="prix_min" class="form-control"
+                value="<?= isset($_GET['prix_min']) ? htmlspecialchars($_GET['prix_min']) : '' ?>" min="0" placeholder="0">
         </div>
 
         <div class="col-md-4">
             <label for="prix_max" class="form-label">Prix Max :</label>
             <input type="number" name="prix_max" id="prix_max" class="form-control" 
-                value="<?= isset($_GET['prix_max']) ? htmlspecialchars($_GET['prix_max']) : '' ?>" min="0">
+                value="<?= isset($_GET['prix_max']) ? htmlspecialchars($_GET['prix_max']) : '' ?>" min="0" placeholder="0">
         </div>
 
         <div class="col-12">
