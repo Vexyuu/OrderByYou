@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_firstname'] = $user['first_name'];
+        $_SESSION['user_lastname'] = $user['last_name'];
         $_SESSION['user_email'] = $user['email'];
         $_SESSION['user_phone'] = $user['phone'];
         $_SESSION['user_role'] = $user['role'];
@@ -40,11 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <style>
-        body {
-            /* background: linear-gradient(to right, #6a11cb, #2575fc); Dégradé violet -> bleu */
-        }
         .form-container {
-            min-height: calc(100vh - 70px); /* Ajuste en fonction de la hauteur du header */
+            min-height: calc(100vh - 70px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -77,35 +76,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-<div class="container form-container">
-    <div class="col-md-5">
-        <div class="card">
-            <h2 class="text-center text-primary">Connexion à votre compte</h2>
-            <form method="POST" action="index.php?pages=login">
-                <div class="mb-3">
-                    <label class="form-label" for="username">Nom d'utilisateur :</label>
-                    <input class="form-control" type="text" name="username" id="username" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="password">Mot de passe :</label>
-                    <input class="form-control" type="password" name="password" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Se connecter</button>
-            </form>
+    <div class="container form-container">
+        <div class="col-md-5">
+            <div class="card">
+                <h2 class="text-center text-primary">Connexion à votre compte</h2>
+                <form method="POST" action="index.php?pages=login">
+                    <div class="mb-3">
+                        <label class="form-label" for="username">Nom d'utilisateur :</label>
+                        <input class="form-control" type="text" name="username" id="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">Mot de passe :</label>
+                        <input class="form-control" type="password" name="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+                    <p class="text-center mt-3">Pas encore de compte ? <a href="index.php?pages=register">S'inscrire</a></p>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-    </body>
-    </html>
-
-<!-- <h2>Connexion</h2> -->
-<!-- <form method="POST" action="index.php?pages=login">
-    <label for="username">Nom d'utilisateur :</label>
-    <input type="text" name="username" id="username" required>
-    <br>
-    <label for="password">Mot de passe :</label>
-    <input type="password" name="password" id="password" required>
-    <br>
-    <button type="submit">Se connecter</button>
-</form> -->
+</body>

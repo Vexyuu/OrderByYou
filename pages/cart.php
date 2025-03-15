@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 }
 
 if (!isset($_SESSION['user_id'])) {
-    echo "<p class='no-cart-text center-text'>Vous devez être connecté pour accéder au panier.</p>";
+    echo "<p class='no-cart-text center-text' style='margin 0 auto'>Vous devez être connecté pour accéder au panier.</p>";
     exit();
 }
 

@@ -20,6 +20,16 @@ if (!isset($_SESSION['username'])) {
                 <div class="col-md-8 profil-details">
                     <p><strong>Nom d'utilisateur</strong>
                     <input type="text" class="form-control mt-3" id="profil-name" value="<?= htmlspecialchars($_SESSION['username']) ?>"></p>
+                    <div class="row mb-2">
+                        <div class="col">
+                        <p><strong>Prénom</strong>
+                            <input class="form-control" type="text" name="first_name" id="first_name" value="<?= htmlspecialchars($_SESSION['user_firstname'] ?? '') ?>"></p>
+                        </div>
+                        <div class="col">
+                        <p><strong>Nom</strong>
+                            <input class="form-control" type="text" name="last_name" id="last_name" value="<?= htmlspecialchars($_SESSION['user_lastname'] ?? '') ?>"></p>
+                        </div>
+                    </div>
                     <p><strong>Email</strong> 
                     <input type="email" class="form-control mt-3" id="profil-email" value="<?= htmlspecialchars($_SESSION['user_email']) ?>"></p>
                     <p><strong>Téléphone</strong> 
@@ -29,7 +39,7 @@ if (!isset($_SESSION['username'])) {
                     <p><strong>Rôle</strong>
                     <input type="text" class="form-control mt-3" id="profil-role" value="<?= htmlspecialchars($_SESSION['user_role']) ?>" disabled></p>
                     <p><strong>Article(s) au panier :</strong> 
-                        <span class="badge bg-primary">
+                        <span class="badge bg-primary mt-3">
                             <?= isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0 ?>
                         </span>
                     </p>

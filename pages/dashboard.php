@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION['username']) || $_SESSION['user_role'] !== 'admin') {
+if (!isset($_SESSION['username']) || $_SESSION['user_role'] !== 'ADMINISTRATEUR') {
     header('Location: index.php?pages=login');
     exit;
 }
@@ -13,7 +13,8 @@ if (isset($_GET['users'])) {
 }
 
 if (isset($_GET['orders'])) {
-    $req = $dbb->prepare("SELECT * FROM users INNER JOIN orders where users.id = orders.user_id");
+    $req = $dbb->prepare("SELECT users.id, users.username, orders.status, orders.total_price, orders.created_at
+    FROM users INNER JOIN orders where users.id = orders.user_id");
     $req->execute();
     $orders = $req->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -27,6 +28,11 @@ if (isset($_GET['products'])) {
 <style>
     .container {
         margin-top: 20vh;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        color: black;
     }
     .dashboard-links {
         display: flex;
@@ -36,32 +42,46 @@ if (isset($_GET['products'])) {
 
     .dashboard-links a {
         margin: 0 10px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .dashboard-links a:hover {
+        background-color: #0056b3;
     }
 
     table {
         width: 100%;
-        min-height: 40vh;
         border-collapse: collapse;
         margin: 10vh 0;
         background: white;
         color: black;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);e
     }
 
     th, td {
-        border: 1px solid black;
-        padding: 10px;
+        border: 1px solid #dee2e6;
+        padding: 15px;
+        text-align: left;
     }
 
     th {
-        background: #f39c12;
+        background: #343a40;
+        color: white;
     }
 
     tr:nth-child(even) {
-        background: #f9f9f9;
+        background: #f2f2f2;
     }
 
     tr:hover {
-        background: #f3f3f3;
+        background: #e9ecef;
         cursor: default;
     }
 </style>
@@ -81,6 +101,8 @@ if (isset($_GET['products'])) {
             <tr>
                 <th>Id</th>
                 <th>Utilisateur</th>
+                <th>Prénom</th>
+                <th>Nom</th>
                 <th>Email</th>
                 <th>Téléphone</th>
                 <th>Rôle</th>
@@ -92,6 +114,8 @@ if (isset($_GET['products'])) {
                 <tr>
                     <td><?= htmlspecialchars($user['id']) ?></td>
                     <td><?= htmlspecialchars($user['username']) ?></td>
+                    <td><?= htmlspecialchars($user['first_name'] ?? '') ?></td>
+                    <td><?= htmlspecialchars($user['last_name'] ?? '') ?></td>
                     <td><?= htmlspecialchars($user['email']) ?></td>
                     <td><?= htmlspecialchars($user['phone'] ?? '') ?></td>
                     <td><?= htmlspecialchars($user['role']) ?></td>

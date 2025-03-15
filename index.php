@@ -5,7 +5,7 @@ require_once './config/database.php';
 include './templates/header.php';
 
 // Liste des pages autorisées pour plus de sécurité (whitelist)
-$allowedPages = ['home', 'products', 'cart', 'login', 'register', 'profil', 'logout', 'dashboard'];
+$allowedPages = ['home', 'products', 'cart', 'login', 'register', 'profil', 'logout', 'dashboard', 'order'];
 
 // Récupère le paramètre "pages" dans l'URL ou utilise "home" par défaut
 $page = isset($_GET['pages']) ? $_GET['pages'] : 'home';
