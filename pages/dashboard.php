@@ -93,85 +93,85 @@ if (isset($_GET['products'])) {
         <a href="index.php?pages=dashboard&orders" class="btn btn-primary">Commandes</a>
         <a href="index.php?pages=dashboard&products" class="btn btn-primary">Produits</a>
     </div>
+
+    <?php if (isset($_GET['users'])): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Utilisateur</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Rôle</th>
+                    <th>Création</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $user): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($user['id']) ?></td>
+                        <td><?= htmlspecialchars($user['username']) ?></td>
+                        <td><?= htmlspecialchars($user['first_name'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($user['last_name'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($user['email']) ?></td>
+                        <td><?= htmlspecialchars($user['phone'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($user['role']) ?></td>
+                        <td><?= htmlspecialchars($user['created_at']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['orders'])): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Utilisateur</th>
+                    <th>Statut</th>
+                    <th>Prix Total</th>
+                    <th>Création</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($orders as $order): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($order['id']) ?></td>
+                        <td><?= htmlspecialchars($order['username']) ?></td>
+                        <td><?= htmlspecialchars($order['status']) ?></td>
+                        <td><?= htmlspecialchars($order['total_price']) ?></td>
+                        <td><?= htmlspecialchars($order['created_at']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['products'])): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Marque</th>
+                    <th>Prix</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($products as $product): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($product['id']) ?></td>
+                        <td><?= htmlspecialchars($product['name']) ?></td>
+                        <td><?= htmlspecialchars($product['brand']) ?></td>
+                        <td><?= htmlspecialchars($product['price']) ?></td>
+                        <td><?= htmlspecialchars($product['description']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
 </div>
-
-<?php if (isset($_GET['users'])): ?>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Utilisateur</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Téléphone</th>
-                <th>Rôle</th>
-                <th>Création</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($users as $user): ?>
-                <tr>
-                    <td><?= htmlspecialchars($user['id']) ?></td>
-                    <td><?= htmlspecialchars($user['username']) ?></td>
-                    <td><?= htmlspecialchars($user['first_name'] ?? '') ?></td>
-                    <td><?= htmlspecialchars($user['last_name'] ?? '') ?></td>
-                    <td><?= htmlspecialchars($user['email']) ?></td>
-                    <td><?= htmlspecialchars($user['phone'] ?? '') ?></td>
-                    <td><?= htmlspecialchars($user['role']) ?></td>
-                    <td><?= htmlspecialchars($user['created_at']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php endif; ?>
-
-<?php if (isset($_GET['orders'])): ?>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Utilisateur</th>
-                <th>Statut</th>
-                <th>Prix Total</th>
-                <th>Création</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($orders as $order): ?>
-                <tr>
-                    <td><?= htmlspecialchars($order['id']) ?></td>
-                    <td><?= htmlspecialchars($order['username']) ?></td>
-                    <td><?= htmlspecialchars($order['status']) ?></td>
-                    <td><?= htmlspecialchars($order['total_price']) ?></td>
-                    <td><?= htmlspecialchars($order['created_at']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php endif; ?>
-
-<?php if (isset($_GET['products'])): ?>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Marque</th>
-                <th>Prix</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($products as $product): ?>
-                <tr>
-                    <td><?= htmlspecialchars($product['id']) ?></td>
-                    <td><?= htmlspecialchars($product['name']) ?></td>
-                    <td><?= htmlspecialchars($product['brand']) ?></td>
-                    <td><?= htmlspecialchars($product['price']) ?></td>
-                    <td><?= htmlspecialchars($product['description']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php endif; ?>
