@@ -4,10 +4,12 @@ require_once './config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
+    $email = $_POST['username'];
     $password = $_POST['password'];
 
-    $stmt = $dbb->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt = $dbb->prepare("SELECT * FROM users WHERE username = :username OR email = :email");
     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -60,19 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-color: #6a11cb;
             box-shadow: 0 0 8px rgba(106, 17, 203, 0.5);
         }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-container img {
-            max-width: 100%;
-            /* height: auto; */
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
@@ -82,11 +71,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h2 class="text-center text-primary">Connexion à votre compte</h2>
                 <form method="POST" action="index.php?pages=login">
                     <div class="mb-3">
-                        <label class="form-label" for="username">Nom d'utilisateur :</label>
+                        <label class="form-label" for="username">Nom d'utilisateur ou email</label>
                         <input class="form-control" type="text" name="username" id="username" required>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="password">Mot de passe :</label>
+                        <label class="form-label" for="password">Mot de passe</label>
                         <input class="form-control" type="password" name="password" id="password" required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Se connecter</button>

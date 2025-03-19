@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             echo "Compte créé avec succès. <a href='index.php?pages=login'>Se connecter</a>";
+            header('Location: index.php?pages=login');
         } else {
             echo "Une erreur s'est produite lors de l'inscription.";
         }
@@ -58,15 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-color: #6a11cb;
             box-shadow: 0 0 8px rgba(106, 17, 203, 0.5);
         }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-container img {
-            max-width: 100%;
-            /* height: auto; */
-        }
         .row {
             display: flex;
             justify-content: space-between;
@@ -77,10 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         .col:last-child {
             margin-right: 0;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -114,7 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="mb-2">
                         <label class="form-label" for="phone">Téléphone</label>
-                        <!-- <input class="form-control" type="tel" name="phone" id="phone" placeholder="00 00 00 00 00 (Optionnel)"> -->
                         <input class="form-control" type="text" name="phone" id="phone" maxlength="14" placeholder="00 00 00 00 00 (Optionnel)">
                     </div>
                     <div class="form-check mb-3">
