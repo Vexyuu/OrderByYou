@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 18 mars 2025 à 23:09
+-- Généré le : mer. 19 mars 2025 à 22:41
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `cart`
@@ -54,7 +54,8 @@ INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `created_at`) VAL
 (23, 10, 32, 1, '2025-02-27 22:29:39'),
 (24, 10, 35, 1, '2025-02-27 22:29:41'),
 (48, 6, 13, 1, '2025-03-15 01:41:11'),
-(55, 13, 12, 1, '2025-03-19 00:08:47');
+(55, 13, 12, 1, '2025-03-19 00:08:47'),
+(56, 13, 13, 1, '2025-03-19 15:26:35');
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `image_path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `products`
@@ -172,7 +173,11 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `stock`, `brand`, 
 (33, 'Samsung Galaxy S21 FE', 'Une version plus accessible de la série S21 avec des fonctionnalités premium.', 414.99, 100, 'SAMSUNG', 1, '2025-01-31 19:49:24', '/assets/img/productsImg/SamsungGalaxyS21FE.jpg'),
 (34, 'Samsung Galaxy S22 Ultra NOIR', 'Le Samsung Galaxy S22 Ultra est un smartphone d’exception.\r\nAvec l’ADN du Galaxy S en son cœur, il embarque toute l’expérience d’un Galaxy Note avec un cadre en aluminium poli, une conception symétrique et un bloc photo intégré à la face arrière.', 869.00, 100, 'SAMSUNG', 1, '2025-01-31 19:52:47', '/assets/img/productsImg/SamsungGalaxyS22Ultra.jpg'),
 (35, 'Samsung Galaxy S22+', 'Retrouvez tout l’ADN Galaxy S au cœur du design d’exception des Galaxy S22 et Galaxy S22+.\r\nLes bords ultra fins se fondent dans un cadre poli symétrique et viennent harmonieusement entourer l’écran, tandis que l’arrière abrite un système photo à trois optiques.', 679.99, 100, 'SAMSUNG', 1, '2025-01-31 19:52:47', '/assets/img/productsImg/SamsungGalaxyS22+jpg'),
-(36, 'Samsung Galaxy S22', 'Les bords ultra fins se fondent dans un cadre poli symétrique et viennent harmonieusement entourer l’écran, tandis que l’arrière abrite un système photo à trois optiques.\r\nUne véritable œuvre d’art technologique, dans le creux de votre main.', 525.00, 100, 'SAMSUNG', 1, '2025-01-31 19:53:56', '/assets/img/productsImg/SamsungGalaxyS22.jpg');
+(36, 'Samsung Galaxy S22', 'Les bords ultra fins se fondent dans un cadre poli symétrique et viennent harmonieusement entourer l’écran, tandis que l’arrière abrite un système photo à trois optiques.\r\nUne véritable œuvre d’art technologique, dans le creux de votre main.', 525.00, 100, 'SAMSUNG', 1, '2025-01-31 19:53:56', '/assets/img/productsImg/SamsungGalaxyS22.jpg'),
+(37, 'Xiaomi 15 Ultra', 'Quad-caméra LeicaQuatre optiques, huit longueurs focales.Grand capteur 1’’ Parfait pour les photos de nuit.Téléobjectif périscopique Leica 200MP Capturez sans limite, de près comme de loin.Xiaomi HyperAIDes clichés sublimés par l\'IA.', 1402.00, 100, 'XIAOMI', 1, '2025-03-19 12:22:49', 'assets/img/productsImg/Xiaomi15Ultra.jpg'),
+(38, 'Xiaomi Mix Flip', 'Écran externe Liquid Display de 4,01 pouces. Protégé par Xiaomi Shield GlassExpérience d\'affichage innovante.\r\nCharge rapide et autonomie pour toute la journéeBatterie Xiaomi Surge de 4780 mAh : HyperCharge 67W', 1302.00, 100, 'XIAOMI', 1, '2025-03-19 12:29:15', '/assets/img/productsImg/XiaomiFlip.jpg'),
+(39, 'Xiaomi 15', 'Triple caméra LeicaDes optiques de qualité professionnelle.Objectif Leica SummiluxParfait pour les photos de nuit.Téléobjectif Leica 60mmCapturez sans limite, de près comme de loin.Xiaomi HyperAI Des clichés sublimés par l\'IA.', 1002.00, 100, 'XIAOMI', 1, '2025-03-19 12:24:20', 'assets/img/productsImg/Xiaomi15.jpg'),
+(40, 'Huawei P50 Pro', 'La conception géométrique simplifiée fait que la conception de la caméra à double matrice se démarque vraiment.\r\nEn intégrant le grand écran et la batterie dans un boîtier compact, le HUAWEI P50 Pro est plus léger que la génération précédente.', 1007.99, 100, 'HUAWEI', 1, '2025-03-19 12:29:15', '/assets/img/productsImg/HuaweiP50Pro.jpg');
 
 -- --------------------------------------------------------
 
@@ -193,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -224,7 +229,9 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `pass
 (26, 'Sophie_Creil', 'Sophie', 'Martinez', 'sophie.martinez@free.fr', '$2y$10$0qFOQM.XCfNR18/h5pQqveKPpzqB2GlVy2cccxNbmDygxfmQihQXK', '07 26 49 85 37', 'CLIENT', '2025-03-15 17:22:00'),
 (27, 'AntoineT91', 'Antoine', 'Thomas', 'antoine.thomas91@laposte.net', '$2y$10$pnioESUVnYcvG3A/XI62L.CIwUh7KU3vuPwwkJGRnAdmUHraRizki', '06 39 77 65 20', 'CLIENT', '2025-03-15 17:22:18'),
 (28, 'Emma.P', 'Emma', 'Petit', 'emma.petit@gmail.com', '$2y$10$v72bKFhGHNMoRsdRAdI9WuRLnnLYxSOiJo/eMrXDe2FLbQp5lJb2m', '07 15 68 24 90', 'CLIENT', '2025-03-15 17:22:38'),
-(29, 'JeanMi78', 'Jean-Michel', 'Rousseau', 'jm.rousseau78@yahoo.fr', '$2y$10$Ll53iiBrSkRNvDAXKjPfWuP8RLFccLt5C7QbIR4TAEtIdsRJi.uLC', '06 78 12 34 56', 'CLIENT', '2025-03-15 17:22:55');
+(29, 'JeanMi78', 'Jean-Michel', 'Rousseau', 'jm.rousseau78@yahoo.fr', '$2y$10$Ll53iiBrSkRNvDAXKjPfWuP8RLFccLt5C7QbIR4TAEtIdsRJi.uLC', '06 78 12 34 56', 'CLIENT', '2025-03-15 17:22:55'),
+(30, 'tt', 'tt', 'TT', 'tt@gmail.com', '$2y$10$oJ8AiSHDYqbCwvPKI39Jwu9C0.OL13X3a7yTwWuDMx/SZy6WJ.n/O', '00 00 00 00 00', 'CLIENT', '2025-03-19 12:03:37'),
+(31, 'Pablo1', 'pablo', 'blopa', 'pablopa@gmail.com', '$2y$10$rkOPEJiVt8fqDYnFMxuBYOolU5sDjq4mSqT7Y2U.ttq6aIy19VjcG', '01 11 11 11 11', 'CLIENT', '2025-03-19 12:08:32');
 
 --
 -- Contraintes pour les tables déchargées
