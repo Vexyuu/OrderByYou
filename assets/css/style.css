@@ -300,7 +300,7 @@ body {
 }
 
 .profil-details {
-    border-left: 3px solid #0f2027;
+    padding: 20px;
 }
 
 #profil-img input {

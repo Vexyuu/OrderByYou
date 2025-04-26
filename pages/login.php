@@ -34,12 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $_SESSION['cart'][$row['product_id']] = $row['quantity'];
         }
-
-        // Rediriger l'utilisateur vers la page d'accueil ou ailleurs
         header('Location: index.php?pages=home');
         exit;
     } else {
-        echo "Nom d'utilisateur ou mot de passe incorrect.";
+        ?>
+        <script>alert("Nom d'utilisateur ou mot de passe incorrect.");</script>
+        <?php
     }
 }
 ?>
@@ -62,27 +62,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-color: #6a11cb;
             box-shadow: 0 0 8px rgba(106, 17, 203, 0.5);
         }
+
+        #displayErrorLog {
+            display: block;
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 </head>
-<body>
-    <div class="container form-container">
-        <div class="col-md-5">
-            <div class="card">
-                <h2 class="text-center text-primary">Connexion à votre compte</h2>
-                <form method="POST" action="index.php?pages=login">
-                    <div class="mb-3">
-                        <label class="form-label" for="username">Nom d'utilisateur ou email</label>
-                        <input class="form-control" type="text" name="username" id="username" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="password">Mot de passe</label>
-                        <input class="form-control" type="password" name="password" id="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Se connecter</button>
-                    <p class="text-center mt-3">Pas encore de compte ? <a href="index.php?pages=register">S'inscrire</a></p>
-                </form>
-            </div>
+<div class="container form-container">
+    <div class="col-md-5">
+        <div class="card">
+            <h2 class="text-center text-primary">Connexion à votre compte</h2>
+            <form method="POST" action="index.php?pages=login">
+                <div class="mb-3">
+                    <label class="form-label" for="username">Nom d'utilisateur ou email</label>
+                    <input class="form-control" type="text" name="username" id="username" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password">Mot de passe</label>
+                    <input class="form-control" type="password" name="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100" onclick="LoginTry()">Se connecter</button>
+                <p class="text-center mt-3">Pas encore de compte ? <a href="index.php?pages=register">S'inscrire</a></p>
+                <p id="displayErrorLog"></p>
+            </form>
         </div>
     </div>
-
-</body>
+</div>

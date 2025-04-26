@@ -17,44 +17,34 @@ if (empty($cart)) {
 // Calcul du total de la commande
 $totalPrice = $_POST['total_price'] ?? 0;
 
-// Insérer la commande dans la table orders
-$stmt = $dbb->prepare("INSERT INTO orders (user_id, total_price) VALUES (:user_id, :total_price)");
-$stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
-$stmt->bindParam(':total_price', $totalPrice, PDO::PARAM_STR);
-$stmt->execute();
-
-// Récupérer l'ID de la commande créée
-$orderId = $dbb->lastInsertId();
-
-// Insérer les produits dans order_items
+// Vérification des stocks avant d'appeler la procédure
 foreach ($cart as $productId => $quantity) {
-    // Récupérer le prix du produit
-    $stmt = $dbb->prepare("SELECT price FROM products WHERE id = :product_id");
+    $stmt = $dbb->prepare("SELECT stock FROM products WHERE id = :product_id");
     $stmt->bindParam(':product_id', $productId, PDO::PARAM_INT);
     $stmt->execute();
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    if ($product) {
-        $price = $product['price'];
-        $stmt = $dbb->prepare(
-            "INSERT INTO order_items (order_id, product_id, quantity, price) 
-            VALUES (:order_id, :product_id, :quantity, :price)"
-        );
-        $stmt->bindParam(':order_id', $orderId, PDO::PARAM_INT);
-        $stmt->bindParam(':product_id', $productId, PDO::PARAM_INT);
-        $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
-        $stmt->bindParam(':price', $price, PDO::PARAM_STR);
-        $stmt->execute();
+
+    if (!$product || $product['stock'] < $quantity) {
+        echo "Stock insuffisant pour le produit ID: $productId.";
+        exit;
     }
 }
 
-// Vider le panier après la commande
-unset($_SESSION['cart']);
-$stmt = $dbb->prepare("DELETE FROM cart WHERE user_id = :user_id");
-$stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+// Appel de la procédure stockée
+$orderId = 0; // Variable pour récupérer l'ID de la commande
+$stmt = $dbb->prepare("CALL CreateOrder(:userId, :totalPrice, @orderId)");
+$stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+$stmt->bindParam(':totalPrice', $totalPrice, PDO::PARAM_STR);
 $stmt->execute();
 
-echo "Commande validée avec succès !";
-header("Location: index.php?pages=home");
-exit;
+// Récupérer l'ID de la commande créée
+$orderId = $dbb->query("SELECT @orderId")->fetchColumn();
+
+if ($orderId) {
+    echo "Commande validée avec succès !";
+    header("Location: index.php?pages=home");
+    exit;
+} else {
+    echo "Une erreur s'est produite lors de la validation de la commande.";
+}
 ?>

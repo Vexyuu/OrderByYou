@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "ppe_orderbyyou";
+$database = "orderbyyou";
 
 try {
     $dbb = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $username, $password);

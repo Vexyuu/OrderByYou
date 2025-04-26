@@ -12,6 +12,8 @@
                             <h6 class="card-subtitle mb-2 text-muted"><?= htmlspecialchars($product['brand']) ?></h6>
                             <p class="card-text text-primary fw-bold"><?= htmlspecialchars($product['price']) ?> €</p>
                             <p class="card-text"><?= htmlspecialchars($product['description']) ?></p>
+                            <p class="card-text"><strong>Catégorie :</strong> <?= htmlspecialchars($product['category_name']) ?></p>
+                            <p class="card-text"><strong>Stock :</strong> <?= htmlspecialchars($product['stock']) ?></p>
                             <button class="btn btn-primary mt-auto" data-id="<?= htmlspecialchars($product['id']) ?>"
                                 onclick="addToCart(<?= htmlspecialchars($product['id']) ?>, this)">Acheter</button>
                         </div>

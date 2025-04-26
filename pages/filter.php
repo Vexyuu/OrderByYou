@@ -13,10 +13,11 @@ try {
     $prix_min = isset($_GET['prix_min']) ? (float)$_GET['prix_min'] : 0;
     $prix_max = isset($_GET['prix_max']) ? (float)$_GET['prix_max'] : 999999;
 
-    // Construction de la requête SQL
-    $sql = "SELECT * FROM products WHERE 1=1";
+    // Construction de la requête SQLs
+    $sql = "SELECT products.*, categories.name AS category_name FROM products JOIN categories ON categories.id = products.category_id WHERE 1=1";
+    
     if ($searchValue) {
-        $sql .= " AND name LIKE :search";
+        $sql .= " AND products.name LIKE :search";
     }
     if ($marque) {
         $sql .= " AND brand = :marque";

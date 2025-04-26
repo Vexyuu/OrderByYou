@@ -15,7 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $checkStmt->execute();
 
     if ($checkStmt->fetchColumn() > 0) {
-        echo "Cet email est déjà utilisé.";
+        ?>
+        <script>alert("Cet email est déjà utilisé.");</script>
+        <?php
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        ?>
+        <script>alert("L'email n'est pas valide.");</script>
+        <?php
+    } else if (strlen($_POST['password']) < 8) {
+        ?>
+        <script>alert("Le mot de passe doit contenir au moins 8 caractères.");</script>
+        <?php
     } else {
         // Insérer l'utilisateur
         $stmt = $dbb->prepare("INSERT INTO users (username, first_name, last_name, email, phone, password) VALUES (:username, :first_name, :last_name, :email, :phone, :password)");
@@ -35,11 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
     <style>
-        body {
-            /* background: linear-gradient(to right, #6a11cb, #2575fc); Dégradé violet -> bleu */
-        }
         .form-container {
             min-height: calc(100vh - 70px); /* Ajuste en fonction de la hauteur du header */
             display: flex;
@@ -63,63 +69,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             display: flex;
             justify-content: space-between;
         }
-        .col {
-            flex: 1;
-            margin-right: 10px;
-        }
-        .col:last-child {
-            margin-right: 0;
-        }
     </style>
 </head>
-<body>
-    <div class="container form-container">
-        <div class="col-md-5">
-            <div class="card">
-                <h2 class="text-center text-primary">Création de votre compte</h2>
-                <form method="POST" action="index.php?pages=register">
-                    <div class="mb-2">
-                        <label class="form-label" for="username">Nom d'utilisateur</label>
-                        <input class="form-control" type="text" name="username" id="username" placeholder="Nom d'utilisateur" required>
+<div class="container form-container">
+    <div class="col-md-5">
+        <div class="card">
+            <h2 class="text-center text-primary">Création de votre compte</h2>
+            <form method="POST" action="index.php?pages=register">
+                <div class="mb-2">
+                    <label class="form-label" for="username">Nom d'utilisateur</label>
+                    <input class="form-control" type="text" name="username" id="username" placeholder="Nom d'utilisateur" required>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <label class="form-label" for="first_name">Prénom</label>
+                        <input class="form-control" type="text" name="first_name" id="first_name" placeholder="Prénom (Optionnel)">
                     </div>
-                    <div class="row mb-2">
-                        <div class="col">
-                            <label class="form-label" for="first_name">Prénom</label>
-                            <input class="form-control" type="text" name="first_name" id="first_name" placeholder="Prénom (Optionnel)">
-                        </div>
-                        <div class="col">
-                            <label class="form-label" for="last_name">Nom</label>
-                            <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Nom (Optionnel)">
-                        </div>
+                    <div class="col">
+                        <label class="form-label" for="last_name">Nom</label>
+                        <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Nom (Optionnel)">
                     </div>
-                    <div class="mb-2">
-                        <label class="form-label" for="email">Email</label>
-                        <input class="form-control" type="email" name="email" id="email" placeholder="exemple@gmail.com" required>
-                    </div>
-                    <div class="mb-2">
-                        <label class="form-label" for="password">Mot de passe</label>
-                        <input class="form-control" type="password" name="password" id="password" placeholder="Mot de passe" required>
-                    </div>
-                    <div class="mb-2">
-                        <label class="form-label" for="phone">Téléphone</label>
-                        <input class="form-control" type="text" name="phone" id="phone" maxlength="14" placeholder="00 00 00 00 00 (Optionnel)">
-                    </div>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="check1" required>
-                        <label class="form-check-label" for="check1">Accepter les conditions</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
-                    <p class="text-center mt-3">Déjà un compte ? <a href="index.php?pages=login">Se connecter</a></p>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" type="email" name="email" id="email" placeholder="exemple@gmail.com" required>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="password">Mot de passe</label>
+                    <input class="form-control" type="password" name="password" id="password" placeholder="Mot de passe" required>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="phone">Téléphone</label>
+                    <input class="form-control" type="text" name="phone" id="phone" maxlength="14" placeholder="00 00 00 00 00 (Optionnel)">
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="check1" required>
+                    <label class="form-check-label" for="check1">Accepter les conditions</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+                <p class="text-center mt-3">Déjà un compte ? <a href="index.php?pages=login">Se connecter</a></p>
 
-                    <i class="text-muted" style="font-size: 12px;">
-                        *La connexion est sécurisée et vos informations ne seront jamais partagées. En cliquant sur "S'inscrire", vous acceptez nos conditions d'utilisation et notre politique de confidentialité.
+                <i class="text-muted" style="font-size: 12px;">
+                    *La connexion est sécurisée et vos informations ne seront jamais partagées. En cliquant sur "S'inscrire", vous acceptez nos conditions d'utilisation et notre politique de confidentialité.
 
-                    </i>
-                </form>
-            </div>
+                </i>
+            </form>
         </div>
     </div>
-</body>
+</div>
 
 <script>
 document.getElementById("phone").addEventListener("input", function(e) {
