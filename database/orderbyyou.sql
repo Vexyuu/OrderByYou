@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 19 mars 2025 à 22:41
+-- Généré le : lun. 28 avr. 2025 à 20:34
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -18,8 +18,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `ppe_orderbyyou`
+-- Base de données : `orderbyyou`
 --
+
+DELIMITER $$
+--
+-- Procédures
+--
+DROP PROCEDURE IF EXISTS `CreateOrder`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CreateOrder` (IN `userId` INT, IN `totalPrice` DECIMAL(10,2), INOUT `orderId` INT)   BEGIN
+    -- Insérer la commande dans la table orders
+    INSERT INTO orders (user_id, total_price, created_at)
+    VALUES (userId, totalPrice, NOW());
+
+    -- Récupérer l'ID de la commande créée
+    SET orderId = LAST_INSERT_ID();
+
+    -- Insérer les produits du panier dans order_items
+    INSERT INTO order_items (order_id, product_id, quantity, price)
+    SELECT orderId, cart.product_id, cart.quantity, products.price
+    FROM cart
+    JOIN products ON cart.product_id = products.id
+    WHERE cart.user_id = userId;
+
+    -- Mettre à jour les stocks des produits
+    UPDATE products
+    JOIN cart ON products.id = cart.product_id
+    SET products.stock = products.stock - cart.quantity
+    WHERE cart.user_id = userId;
+
+    -- Vider le panier
+    DELETE FROM cart WHERE user_id = userId;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -37,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `cart`
@@ -54,8 +86,32 @@ INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `created_at`) VAL
 (23, 10, 32, 1, '2025-02-27 22:29:39'),
 (24, 10, 35, 1, '2025-02-27 22:29:41'),
 (48, 6, 13, 1, '2025-03-15 01:41:11'),
-(55, 13, 12, 1, '2025-03-19 00:08:47'),
-(56, 13, 13, 1, '2025-03-19 15:26:35');
+(66, 32, 13, 1, '2025-04-27 00:20:32'),
+(67, 32, 19, 1, '2025-04-27 00:20:34'),
+(68, 32, 26, 1, '2025-04-27 00:22:58'),
+(69, 32, 26, 1, '2025-04-27 00:22:59');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Smartphones'),
+(2, 'Tablettes'),
+(3, 'Ordinateurs');
 
 -- --------------------------------------------------------
 
@@ -68,11 +124,11 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `total_price` decimal(10,2) NOT NULL,
-  `status` enum('En attente','Payé','Expédié','Annulé') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'En attente',
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'En attente',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_orders_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `orders`
@@ -84,7 +140,11 @@ INSERT INTO `orders` (`id`, `user_id`, `total_price`, `status`, `created_at`) VA
 (9, 8, 3501.99, 'En attente', '2025-03-11 15:28:40'),
 (11, 6, 2597.98, 'En attente', '2025-03-14 17:48:29'),
 (12, 21, 2024.99, 'En attente', '2025-03-15 16:12:29'),
-(13, 13, 1329.00, 'En attente', '2025-03-16 12:30:59');
+(13, 13, 1329.00, 'En attente', '2025-03-16 12:30:59'),
+(14, 13, 2952.99, 'En attente', '2025-04-26 14:25:57'),
+(15, 15, 950.00, 'En attente', '2025-04-26 15:02:39'),
+(16, 32, 849.99, 'En attente', '2025-04-26 16:09:05'),
+(17, 32, 849.99, 'En attente', '2025-04-26 16:13:38');
 
 -- --------------------------------------------------------
 
@@ -102,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   PRIMARY KEY (`id`),
   KEY `fk_order_items_order` (`order_id`),
   KEY `fk_order_items_product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `order_items`
@@ -123,7 +183,13 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) 
 (13, 12, 15, 1, 687.00),
 (14, 12, 19, 1, 438.00),
 (15, 12, 22, 1, 899.99),
-(16, 13, 12, 1, 1329.00);
+(16, 13, 12, 1, 1329.00),
+(17, 14, 40, 1, 1007.99),
+(18, 14, 38, 1, 1302.00),
+(19, 14, 36, 1, 525.00),
+(20, 14, 31, 1, 118.00),
+(21, 15, 13, 1, 950.00),
+(22, 16, 28, 1, 849.99);
 
 -- --------------------------------------------------------
 
@@ -138,12 +204,12 @@ CREATE TABLE IF NOT EXISTS `products` (
   `description` text,
   `price` decimal(10,2) NOT NULL,
   `stock` int NOT NULL,
-  `brand` enum('APPLE','SAMSUNG','XIAOMI','HUAWEI') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `brand` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `category_id` int DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `image_path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`)
+  KEY `fk_category` (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -165,7 +231,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `stock`, `brand`, 
 (25, 'Samsung Galaxy S23+', 'Un téléphone haut de gamme avec une autonomie améliorée et des performances robustes grâce au Snapdragon 8 Gen 2.\r\n', 799.99, 100, 'SAMSUNG', 1, '2025-01-31 19:12:45', '/assets/img/productsImg/SamsungGalaxyS23+.jpg'),
 (26, 'Samsung Galaxy S23', 'Compact, puissant et élégant, parfait pour ceux qui veulent un flagship sans compromis sur la taille.', 605.99, 100, 'SAMSUNG', 1, '2025-01-31 19:17:26', '/assets/img/productsImg/SamsungGalaxyS23.jpg'),
 (27, 'Samsung Galaxy Z Fold5', 'Un smartphone pliable conçu pour la productivité avec un écran principal de 7,6 pouces.', 1222.99, 100, 'SAMSUNG', 1, '2025-01-31 19:17:26', '/assets/img/productsImg/Galaxy-Z-Fold5'),
-(28, 'Samsung Galaxy Z Flip5', 'Style et innovation dans un format pliable compact avec un écran externe plus grand.', 849.99, 100, 'SAMSUNG', 1, '2025-01-31 19:22:59', '/assets/img/productsImg/Galaxy-Z-Flip5'),
+(28, 'Samsung Galaxy Z Flip5', 'Style et innovation dans un format pliable compact avec un écran externe plus grand.', 849.99, 99, 'SAMSUNG', 1, '2025-01-31 19:22:59', '/assets/img/productsImg/Galaxy-Z-Flip5'),
 (29, 'Samsung Galaxy A54', 'Milieu de gamme avec un écran AMOLED éclatant, une excellente autonomie, et un prix abordable.', 309.99, 100, 'SAMSUNG', 1, '2025-01-31 19:22:59', '/assets/img/productsImg/SamsungGalaxyA54'),
 (30, 'Samsung Galaxy A34', 'Performance et design moderne pour un smartphone 5G économique.', 209.00, 100, 'SAMSUNG', 1, '2025-01-31 19:28:22', '/assets/img/productsImg/SamsungGalaxyA34.jpg'),
 (31, 'Samsung Galaxy A14', 'Un téléphone abordable avec une batterie massive de 6000 mAh pour une autonomie impressionnante.', 118.00, 100, 'SAMSUNG', 1, '2025-01-31 19:28:22', '/assets/img/productsImg/SamsungGalaxyA14.jpg'),
@@ -194,11 +260,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(15) DEFAULT NULL,
-  `role` enum('CLIENT','ADMINISTRATEUR','FOURNISSEUR') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'CLIENT',
+  `role` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'CLIENT',
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -207,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `phone`, `role`, `created_at`) VALUES
 (4, 'Test', 'Te', 'st', 'Test@gmail.com', '$2y$10$jT.Jkko18tYsrFaQa6Sse.jMbW7Ex21oXn16boBgmeb0YabU9hg3C', '', 'CLIENT', '2025-02-21 02:41:20'),
 (5, 'Kilo', 'Kiki', 'Lolo', 'kilo@gmail.com', '$2y$10$4nhqfmZUZBFiLxelQQIcKurBWcW33cSY/Lv1eK0CUHc1v2B9ReVIq', '', 'CLIENT', '2025-02-21 11:47:56'),
-(6, 'aa', 'a', 'a', 'aa@gmail.com', '$2y$10$Q67k5A2kXtJaS.ZZ/H25Kuw3qmHNB8Ym1DHIGEJ5OdDe01vCGVfq2', '', 'CLIENT', '2025-02-21 17:14:05'),
+(6, 'aa', 'a', 'a', 'aa@gmail.com', '', '', 'CLIENT', '2025-02-21 17:14:05'),
 (7, 'Lolavlch', 'Lola', 'Viladrich', 'lolaviladrich2006@icloud.com', '$2y$10$3e6YKzaCc4CjhGtINxdb3OzVXR60WLfGSeMuso80G6Maxpw8tScAS', '07 67 31 21 37', 'CLIENT', '2025-02-23 11:53:56'),
 (8, 'bb', 'b', 'b', 'bb@gmail.com', '$2y$10$rLEtC6plTkmpsk8f7NWMc.v47RfrGwYk6heOJY15NdOHxh/YzNdq.', '', 'CLIENT', '2025-02-23 11:55:57'),
 (9, 'cc', 'c', 'c', 'cc@gmail.com', '$2y$10$QQLqItJPx/TJCB4SFzgvhenmN/ZDG.qpiiZHxg0QNTEWUQ/YW4aF.', NULL, 'CLIENT', '2025-02-27 14:52:38'),
@@ -231,7 +297,8 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `pass
 (28, 'Emma.P', 'Emma', 'Petit', 'emma.petit@gmail.com', '$2y$10$v72bKFhGHNMoRsdRAdI9WuRLnnLYxSOiJo/eMrXDe2FLbQp5lJb2m', '07 15 68 24 90', 'CLIENT', '2025-03-15 17:22:38'),
 (29, 'JeanMi78', 'Jean-Michel', 'Rousseau', 'jm.rousseau78@yahoo.fr', '$2y$10$Ll53iiBrSkRNvDAXKjPfWuP8RLFccLt5C7QbIR4TAEtIdsRJi.uLC', '06 78 12 34 56', 'CLIENT', '2025-03-15 17:22:55'),
 (30, 'tt', 'tt', 'TT', 'tt@gmail.com', '$2y$10$oJ8AiSHDYqbCwvPKI39Jwu9C0.OL13X3a7yTwWuDMx/SZy6WJ.n/O', '00 00 00 00 00', 'CLIENT', '2025-03-19 12:03:37'),
-(31, 'Pablo1', 'pablo', 'blopa', 'pablopa@gmail.com', '$2y$10$rkOPEJiVt8fqDYnFMxuBYOolU5sDjq4mSqT7Y2U.ttq6aIy19VjcG', '01 11 11 11 11', 'CLIENT', '2025-03-19 12:08:32');
+(31, 'Pablo1', 'pablo', 'blopa', 'pablopa@gmail.com', '$2y$10$rkOPEJiVt8fqDYnFMxuBYOolU5sDjq4mSqT7Y2U.ttq6aIy19VjcG', '01 11 11 11 11', 'CLIENT', '2025-03-19 12:08:32'),
+(32, 'aaa', 'aaa', 'aaa', 'aaa@gmail.com', '$2y$10$QyBsRPZrGa5Dx7AV9hn4p.kzOFlzyB65nXw91ArRN22ek5sxPjoC6', '', 'CLIENT', '2025-04-26 17:42:57');
 
 --
 -- Contraintes pour les tables déchargées
@@ -256,6 +323,12 @@ ALTER TABLE `orders`
 ALTER TABLE `order_items`
   ADD CONSTRAINT `fk_order_items_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `fk_order_items_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
+-- Contraintes pour la table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
