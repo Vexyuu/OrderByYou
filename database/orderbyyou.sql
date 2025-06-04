@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 28 avr. 2025 à 20:34
+-- Généré le : mer. 04 juin 2025 à 13:31
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `cart`
@@ -89,7 +89,8 @@ INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `created_at`) VAL
 (66, 32, 13, 1, '2025-04-27 00:20:32'),
 (67, 32, 19, 1, '2025-04-27 00:20:34'),
 (68, 32, 26, 1, '2025-04-27 00:22:58'),
-(69, 32, 26, 1, '2025-04-27 00:22:59');
+(69, 32, 26, 1, '2025-04-27 00:22:59'),
+(70, 13, 13, 1, '2025-05-06 20:09:02');
 
 -- --------------------------------------------------------
 
@@ -264,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -298,7 +299,8 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `pass
 (29, 'JeanMi78', 'Jean-Michel', 'Rousseau', 'jm.rousseau78@yahoo.fr', '$2y$10$Ll53iiBrSkRNvDAXKjPfWuP8RLFccLt5C7QbIR4TAEtIdsRJi.uLC', '06 78 12 34 56', 'CLIENT', '2025-03-15 17:22:55'),
 (30, 'tt', 'tt', 'TT', 'tt@gmail.com', '$2y$10$oJ8AiSHDYqbCwvPKI39Jwu9C0.OL13X3a7yTwWuDMx/SZy6WJ.n/O', '00 00 00 00 00', 'CLIENT', '2025-03-19 12:03:37'),
 (31, 'Pablo1', 'pablo', 'blopa', 'pablopa@gmail.com', '$2y$10$rkOPEJiVt8fqDYnFMxuBYOolU5sDjq4mSqT7Y2U.ttq6aIy19VjcG', '01 11 11 11 11', 'CLIENT', '2025-03-19 12:08:32'),
-(32, 'aaa', 'aaa', 'aaa', 'aaa@gmail.com', '$2y$10$QyBsRPZrGa5Dx7AV9hn4p.kzOFlzyB65nXw91ArRN22ek5sxPjoC6', '', 'CLIENT', '2025-04-26 17:42:57');
+(32, 'aaa', 'aaa', 'aaa', 'aaa@gmail.com', '$2y$10$QyBsRPZrGa5Dx7AV9hn4p.kzOFlzyB65nXw91ArRN22ek5sxPjoC6', '', 'CLIENT', '2025-04-26 17:42:57'),
+(33, 'user', '', '', 'user@gmail.com', '$2y$10$C3Smo.hHpkJuxJizxQu5i.8yon95QDPXEJFHmFsq9/Gdwz5miMqZa', '', 'CLIENT', '2025-06-04 15:31:09');
 
 --
 -- Contraintes pour les tables déchargées
