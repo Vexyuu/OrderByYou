@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 04 juin 2025 à 13:31
+-- Généré le : lun. 09 juin 2025 à 18:17
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `cart`
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_orders_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `orders`
@@ -145,7 +145,8 @@ INSERT INTO `orders` (`id`, `user_id`, `total_price`, `status`, `created_at`) VA
 (14, 13, 2952.99, 'En attente', '2025-04-26 14:25:57'),
 (15, 15, 950.00, 'En attente', '2025-04-26 15:02:39'),
 (16, 32, 849.99, 'En attente', '2025-04-26 16:09:05'),
-(17, 32, 849.99, 'En attente', '2025-04-26 16:13:38');
+(17, 32, 849.99, 'En attente', '2025-04-26 16:13:38'),
+(18, 8, 849.00, 'En attente', '2025-06-05 10:33:28');
 
 -- --------------------------------------------------------
 
@@ -163,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   PRIMARY KEY (`id`),
   KEY `fk_order_items_order` (`order_id`),
   KEY `fk_order_items_product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `order_items`
@@ -190,7 +191,8 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`) 
 (19, 14, 36, 1, 525.00),
 (20, 14, 31, 1, 118.00),
 (21, 15, 13, 1, 950.00),
-(22, 16, 28, 1, 849.99);
+(22, 16, 28, 1, 849.99),
+(23, 18, 32, 1, 849.00);
 
 -- --------------------------------------------------------
 
@@ -236,7 +238,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `stock`, `brand`, 
 (29, 'Samsung Galaxy A54', 'Milieu de gamme avec un écran AMOLED éclatant, une excellente autonomie, et un prix abordable.', 309.99, 100, 'SAMSUNG', 1, '2025-01-31 19:22:59', '/assets/img/productsImg/SamsungGalaxyA54'),
 (30, 'Samsung Galaxy A34', 'Performance et design moderne pour un smartphone 5G économique.', 209.00, 100, 'SAMSUNG', 1, '2025-01-31 19:28:22', '/assets/img/productsImg/SamsungGalaxyA34.jpg'),
 (31, 'Samsung Galaxy A14', 'Un téléphone abordable avec une batterie massive de 6000 mAh pour une autonomie impressionnante.', 118.00, 100, 'SAMSUNG', 1, '2025-01-31 19:28:22', '/assets/img/productsImg/SamsungGalaxyA14.jpg'),
-(32, 'Samsung Galaxy Note20 Ultra', 'Un téléphone premium avec un stylet S Pen et un écran de 6,9 pouces.', 849.00, 100, 'SAMSUNG', 1, '2025-01-31 19:49:24', '/assets/img/productsImg/SamsungGalaxyNote20Ultra.jpg'),
+(32, 'Samsung Galaxy Note20 Ultra', 'Un téléphone premium avec un stylet S Pen et un écran de 6,9 pouces.', 849.00, 99, 'SAMSUNG', 1, '2025-01-31 19:49:24', '/assets/img/productsImg/SamsungGalaxyNote20Ultra.jpg'),
 (33, 'Samsung Galaxy S21 FE', 'Une version plus accessible de la série S21 avec des fonctionnalités premium.', 414.99, 100, 'SAMSUNG', 1, '2025-01-31 19:49:24', '/assets/img/productsImg/SamsungGalaxyS21FE.jpg'),
 (34, 'Samsung Galaxy S22 Ultra NOIR', 'Le Samsung Galaxy S22 Ultra est un smartphone d’exception.\r\nAvec l’ADN du Galaxy S en son cœur, il embarque toute l’expérience d’un Galaxy Note avec un cadre en aluminium poli, une conception symétrique et un bloc photo intégré à la face arrière.', 869.00, 100, 'SAMSUNG', 1, '2025-01-31 19:52:47', '/assets/img/productsImg/SamsungGalaxyS22Ultra.jpg'),
 (35, 'Samsung Galaxy S22+', 'Retrouvez tout l’ADN Galaxy S au cœur du design d’exception des Galaxy S22 et Galaxy S22+.\r\nLes bords ultra fins se fondent dans un cadre poli symétrique et viennent harmonieusement entourer l’écran, tandis que l’arrière abrite un système photo à trois optiques.', 679.99, 100, 'SAMSUNG', 1, '2025-01-31 19:52:47', '/assets/img/productsImg/SamsungGalaxyS22+jpg'),
@@ -265,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -280,7 +282,7 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `pass
 (9, 'cc', 'c', 'c', 'cc@gmail.com', '$2y$10$QQLqItJPx/TJCB4SFzgvhenmN/ZDG.qpiiZHxg0QNTEWUQ/YW4aF.', NULL, 'CLIENT', '2025-02-27 14:52:38'),
 (10, 'Vexyuu', 'Killian', 'Fievet', 'killianfievet@gmail.com', '$2y$10$MgeEjLHBACrgN/uMU7yTiuMrtxPCYhYhtnrrY5VHaYEvsty7sditG', '06 69 97 90 59', 'ADMINISTRATEUR', '2025-02-27 22:28:13'),
 (11, 'ee', 'e', 'e', 'ee@gmail.com', '$2y$10$mvHlcLyd43C2YzrHxzD73ehjv2okqqHQhDKWgG5ihUYFXVj9SJwOu', '', 'CLIENT', '2025-02-27 23:03:18'),
-(13, 'admin', 'ladmin', 'istrateur', 'admin@gmail.com', '$2y$10$84mp3aJiJ0mtCn/EqyP4quIlJDTCoMocw5yWZmiscKrQynG/fM/Oa', '', 'ADMINISTRATEUR', '2025-03-15 00:59:46'),
+(13, 'admin', 'ladmin', 'istrateur', 'admin@gmail.com', '$2y$10$0kNFhf0S5QcBZveuRlhRZumgTLq4WsFtkr0FNIGG21QKsxKoDA64u', '', 'ADMINISTRATEUR', '2025-03-15 00:59:46'),
 (14, 'qq', 'q', 'q', 'qq@gmail.com', '$2y$10$Tz4SpXlNoj6VmWXOi2sMx.MF6AJbnizy0UwGIKjnATBzRHyZ8B/sS', '', 'CLIENT', '2025-03-15 01:00:49'),
 (15, 'rr', 'r', 'r', 'rr@gmail.com', '$2y$10$bznwU.FcZr3EiTswnkviA.yiG4lExML6gLejXT/GkWm5O9yFFjiHK', '04 05 03 02 11', 'CLIENT', '2025-03-15 01:50:34'),
 (16, 'blablabla', 'blebleble', 'blublublu', 'blableblu@gmail.com', '$2y$10$XKdSKYfQQSeJOFOFiIDWNuvlx4NrLFGYqyCV4qCmwqwElWZ0zbBBS', '09 76 52 88 93', 'CLIENT', '2025-03-15 12:36:55'),
@@ -300,7 +302,9 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `pass
 (30, 'tt', 'tt', 'TT', 'tt@gmail.com', '$2y$10$oJ8AiSHDYqbCwvPKI39Jwu9C0.OL13X3a7yTwWuDMx/SZy6WJ.n/O', '00 00 00 00 00', 'CLIENT', '2025-03-19 12:03:37'),
 (31, 'Pablo1', 'pablo', 'blopa', 'pablopa@gmail.com', '$2y$10$rkOPEJiVt8fqDYnFMxuBYOolU5sDjq4mSqT7Y2U.ttq6aIy19VjcG', '01 11 11 11 11', 'CLIENT', '2025-03-19 12:08:32'),
 (32, 'aaa', 'aaa', 'aaa', 'aaa@gmail.com', '$2y$10$QyBsRPZrGa5Dx7AV9hn4p.kzOFlzyB65nXw91ArRN22ek5sxPjoC6', '', 'CLIENT', '2025-04-26 17:42:57'),
-(33, 'user', '', '', 'user@gmail.com', '$2y$10$C3Smo.hHpkJuxJizxQu5i.8yon95QDPXEJFHmFsq9/Gdwz5miMqZa', '', 'CLIENT', '2025-06-04 15:31:09');
+(33, 'user', '', '', 'user@gmail.com', '$2y$10$C3Smo.hHpkJuxJizxQu5i.8yon95QDPXEJFHmFsq9/Gdwz5miMqZa', '', 'CLIENT', '2025-06-04 15:31:09'),
+(34, 'User', '', '', 'UserUser@gmail.com', '$2y$10$YKL9.dswwPIhzhQd3D6zOupyxyXQzBMxC.sLbRmMYAC9nYw6HVcxq', '', 'CLIENT', '2025-06-09 20:16:17'),
+(35, 'Admin', '', '', 'AdminAdmin@gmail.com', '$2y$10$LifeKy6aDzZSTyONusxsBOvse.0Xu8xyxmwCmRj5VbuOhAqufxmFq', '', 'CLIENT', '2025-06-09 20:16:51');
 
 --
 -- Contraintes pour les tables déchargées

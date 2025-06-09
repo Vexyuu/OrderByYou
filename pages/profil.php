@@ -99,3 +99,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_password'])) {
         </ul>
     </div>
 </div>
+<script>
+document.querySelector('input[name="new_password"]').addEventListener("input", function(e) {
+    const value = e.target.value;
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    if (!regex.test(value)) {
+        e.target.setCustomValidity("Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.");
+    } else {
+        e.target.setCustomValidity("");
+    }
+});
+</script>
