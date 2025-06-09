@@ -304,7 +304,7 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `pass
 (32, 'aaa', 'aaa', 'aaa', 'aaa@gmail.com', '$2y$10$QyBsRPZrGa5Dx7AV9hn4p.kzOFlzyB65nXw91ArRN22ek5sxPjoC6', '', 'CLIENT', '2025-04-26 17:42:57'),
 (33, 'user', '', '', 'user@gmail.com', '$2y$10$C3Smo.hHpkJuxJizxQu5i.8yon95QDPXEJFHmFsq9/Gdwz5miMqZa', '', 'CLIENT', '2025-06-04 15:31:09'),
 (34, 'User', '', '', 'UserUser@gmail.com', '$2y$10$YKL9.dswwPIhzhQd3D6zOupyxyXQzBMxC.sLbRmMYAC9nYw6HVcxq', '', 'CLIENT', '2025-06-09 20:16:17'),
-(35, 'Admin', '', '', 'AdminAdmin@gmail.com', '$2y$10$LifeKy6aDzZSTyONusxsBOvse.0Xu8xyxmwCmRj5VbuOhAqufxmFq', '', 'CLIENT', '2025-06-09 20:16:51');
+(35, 'Admin', '', '', 'AdminAdmin@gmail.com', '$2y$10$LifeKy6aDzZSTyONusxsBOvse.0Xu8xyxmwCmRj5VbuOhAqufxmFq', '', 'ADMINISTRATEUR', '2025-06-09 20:16:51');
 
 --
 -- Contraintes pour les tables déchargées
